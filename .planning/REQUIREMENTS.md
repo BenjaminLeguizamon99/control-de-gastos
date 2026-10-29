@@ -99,13 +99,53 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (filled by roadmap) | | |
+| AUTH-01 | Phase 1 | Pending |
+| AUTH-02 | Phase 1 | Pending |
+| AUTH-03 | Phase 1 | Pending |
+| AUTH-04 | Phase 1 | Pending |
+| AUTH-05 | Phase 1 | Pending |
+| AUTH-06 | Phase 1 | Pending |
+| CAT-01 | Phase 3 | Pending |
+| CAT-02 | Phase 3 | Pending |
+| CAT-03 | Phase 3 | Pending |
+| CAT-04 | Phase 6 | Pending |
+| GAS-01 | Phase 3 | Pending |
+| GAS-02 | Phase 3 | Pending |
+| GAS-03 | Phase 3 | Pending |
+| GAS-04 | Phase 3 | Pending |
+| GAS-05 | Phase 3 | Pending |
+| GAS-06 | Phase 3 | Pending |
+| GAS-07 | Phase 6 | Pending |
+| GAS-08 | Phase 6 | Pending |
+| GAS-09 | Phase 3 | Pending |
+| CUO-01 | Phase 4 | Pending |
+| CUO-02 | Phase 4 | Pending |
+| CUO-03 | Phase 4 | Pending |
+| CUO-04 | Phase 4 | Pending |
+| CUO-05 | Phase 5 | Pending |
+| ING-01 | Phase 5 | Pending |
+| ING-02 | Phase 6 | Pending |
+| RES-01 | Phase 5 | Pending |
+| RES-02 | Phase 5 | Pending |
+| RES-03 | Phase 5 | Pending |
+| RES-04 | Phase 5 | Pending |
+| RES-05 | Phase 6 | Pending |
+| RES-06 | Phase 6 | Pending |
+| RES-07 | Phase 5 | Pending |
+| LIS-01 | Phase 5 | Pending |
+| LIS-02 | Phase 6 | Pending |
+| DIS-01 | Phase 2 | Pending |
+| DIS-02 | Phase 2 | Pending |
+| DIS-03 | Phase 7 | Pending |
+| DIS-04 | Phase 7 | Pending |
+| DIS-05 | Phase 7 | Pending |
+| DIS-06 | Phase 7 | Pending |
 
 **Coverage:**
 - v1 requirements: 41 total
-- Mapped to phases: 0
-- Unmapped: 41 ⚠️
+- Mapped to phases: 41
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-10-29*
-*Last updated: 2026-10-29 after initial definition*
+*Last updated: 2026-10-29 after roadmap creation*
