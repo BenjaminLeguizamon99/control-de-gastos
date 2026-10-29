@@ -9,3 +9,6 @@ __pycache__/
 .pytest_cache/
 node_modules/
 dist/
+
+# Worktrees temporales de agentes
+.claude/worktrees/

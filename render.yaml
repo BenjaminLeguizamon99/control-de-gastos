@@ -1,0 +1,25 @@
+# Blueprint del backend en Render (free). Los secretos se cargan en el dashboard, no en este archivo.
+# Las migraciones NO corren en el build: se aplican desde local (ver README).
+services:
+  - type: web
+    name: control-de-gastos-api
+    runtime: python
+    rootDir: backend
+    region: virginia # misma región que Supabase (us-east-1)
+    plan: free
+    buildCommand: uv sync --frozen --no-dev
+    # Binario directo y no `uv run`, para que no re-sincronice las dependencias de dev.
+    startCommand: .venv/bin/uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    autoDeployTrigger: commit
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.18
+      - key: DATABASE_URL
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: ALLOWED_USER_IDS
+        sync: false
+      - key: CORS_ORIGINS
+        sync: false
