@@ -555,7 +555,9 @@ SQLAlchemy 2.x tipa `Mapped[...]` de forma nativa, sin plugin de mypy.
 | A7 | Render ofrece `region: virginia` en el plan free | Pitfall 12 | Usar ohio |
 | A8 | Paquetes sin slopcheck (todos de primera línea) | Audit | Bajo |
 
-## Open Questions
+## Open Questions (RESOLVED)
+
+> RESOLVED 2026-10-29 by user: 1) tabla `probes`; 2) PWA diferida a Fase 7; 3) el usuario mueve el repo fuera de OneDrive; 4) Node 24 LTS + react-router 8.5.
 
 1. **¿Qué tabla usa la Fase 1 para probar AUTH-05 y AUTH-06 si todavía no hay dominio?**
    - Recomendación: una tabla mínima `probes(id, user_id, created_at)` con RLS y `GET /probes/{id}` protegido. No hay endpoint de creación: los tests insertan directo en la DB. La Fase 3 la puede borrar en su migración o dejarla. No se recomienda adelantar `categories`, porque el SC5 de la Fase 3 asume que se crea ahí.

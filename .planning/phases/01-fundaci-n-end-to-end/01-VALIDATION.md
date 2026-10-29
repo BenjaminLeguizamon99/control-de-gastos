@@ -2,7 +2,7 @@
 phase: 1
 slug: fundaci-n-end-to-end
 status: draft
-nyquist_compliant: false
+nyquist_compliant: true
 wave_0_complete: false
 created: 2026-10-29
 ---
