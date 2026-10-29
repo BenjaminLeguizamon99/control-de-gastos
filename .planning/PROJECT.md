@@ -17,9 +17,9 @@ Cargar un gasto desde el celular en segundos y saber al instante cuánta plata m
 ### Active
 
 - [ ] Login con Supabase Auth; datos sincronizados entre celular, tablet y compu
-- [ ] Registrar gasto: monto (ARS), categoría, descripción (opcional), medio de pago (desplegable: débito/transferencia, crédito, efectivo), fecha (por defecto hoy)
+- [ ] Registrar gasto: monto (ARS), categoría, descripción (opcional), medio de pago (control segmentado: débito/transferencia, crédito, efectivo), fecha (por defecto hoy)
 - [ ] Gasto con crédito: elegir cantidad de cuotas; el monto se divide automáticamente entre los meses siguientes
-- [ ] Gasto con crédito: elegir el mes de la primera cuota (desplegable con solo mes actual o mes siguiente)
+- [ ] Gasto con crédito: elegir el mes de la primera cuota (mes de la fecha del gasto o el siguiente)
 - [ ] Registrar ingresos como cargas sueltas (monto, fecha, descripción)
 - [ ] Categorías base precargadas, editables (crear, renombrar, borrar)
 - [ ] Ver totales gastados por categoría del mes
