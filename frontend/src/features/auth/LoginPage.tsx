@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react'
-import { useNavigate } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import { z } from 'zod'
 import { supabase } from '../../lib/supabase'
 import { authErrorMessage } from './authErrors'
@@ -77,7 +77,12 @@ export function LoginPage() {
               onChange={(e) => setPassword(e.target.value)}
               className={`${inputBase} border-zinc-300`}
             />
-            {/* El link "Olvidé mi contraseña" lo agrega 01-04 */}
+            <Link
+              to="/recuperar"
+              className="inline-flex min-h-11 items-center py-2 text-sm text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+            >
+              Olvidé mi contraseña
+            </Link>
           </div>
           {serverError && (
             <p role="alert" className="mb-4 text-sm text-red-600">
