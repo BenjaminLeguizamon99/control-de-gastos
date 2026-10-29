@@ -7,13 +7,13 @@
 
 ### Autenticación (AUTH)
 
-- [ ] **AUTH-01**: El usuario puede iniciar sesión con email y contraseña (Supabase Auth)
-- [ ] **AUTH-02**: La sesión persiste entre recargas y al reabrir la PWA instalada
-- [ ] **AUTH-03**: El usuario puede cerrar sesión desde cualquier pantalla
+- [x] **AUTH-01**: El usuario puede iniciar sesión con email y contraseña (Supabase Auth)
+- [x] **AUTH-02**: La sesión persiste entre recargas y al reabrir la PWA instalada
+- [x] **AUTH-03**: El usuario puede cerrar sesión desde cualquier pantalla
 - [x] **AUTH-04**: El backend rechaza (401) toda request sin JWT válido (JWKS, algoritmos fijos, `aud` + `iss` verificados)
 - [ ] **AUTH-05**: Un usuario solo puede ver/modificar sus propios datos; recursos ajenos devuelven 404
 - [x] **AUTH-06**: Las tablas no son accesibles por la Data API pública de Supabase (RLS habilitado sin policies) y los registros nuevos están deshabilitados
-- [ ] **AUTH-07**: El usuario puede recuperar su contraseña desde la app: pide un código de 6 dígitos por email (OTP de recuperación de Supabase, sin link), lo ingresa en la PWA y define una contraseña nueva
+- [x] **AUTH-07**: El usuario puede recuperar su contraseña desde la app: pide un código de 6 dígitos por email (OTP de recuperación de Supabase, sin link), lo ingresa en la PWA y define una contraseña nueva
 
 ### Categorías (CAT)
 
@@ -100,13 +100,13 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| AUTH-01 | Phase 1 | Pending |
-| AUTH-02 | Phase 1 | Pending |
-| AUTH-03 | Phase 1 | Pending |
+| AUTH-01 | Phase 1 | Complete |
+| AUTH-02 | Phase 1 | Complete |
+| AUTH-03 | Phase 1 | Complete |
 | AUTH-04 | Phase 1 | Complete |
 | AUTH-05 | Phase 1 | Pending |
 | AUTH-06 | Phase 1 | Complete |
-| AUTH-07 | Phase 1 | Pending |
+| AUTH-07 | Phase 1 | Complete |
 | CAT-01 | Phase 3 | Pending |
 | CAT-02 | Phase 3 | Pending |
 | CAT-03 | Phase 3 | Pending |

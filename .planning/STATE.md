@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Phase 1 UI-SPEC approved
-last_updated: "2026-10-29T17:31:21.531Z"
+stopped_at: Completed 01-04-PLAN.md
+last_updated: "2026-10-29T18:50:01.119Z"
 last_activity: 2026-10-29
 progress:
   total_phases: 7
   completed_phases: 0
   total_plans: 6
-  completed_plans: 3
+  completed_plans: 4
   percent: 0
 ---
 
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-10-29)
 ## Current Position
 
 Phase: 01 (fundaci-n-end-to-end) — EXECUTING
-Plan: 2 of 6
+Plan: 5 of 6
 Status: Ready to execute
 Last activity: 2026-10-29
 
-Progress: [█████░░░░░] 50%
+Progress: [███████░░░] 67%
 
 ## Performance Metrics
 
@@ -53,6 +53,7 @@ Progress: [█████░░░░░] 50%
 
 *Updated after each plan completion*
 | Phase 01 P02 | 5 min | 2 tasks | 1 files |
+| Phase 01 P04 | 20 min | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -68,6 +69,9 @@ Recent decisions affecting current work:
 - [Roadmap]: RLS habilitado sin policies en toda tabla `public`. Signups deshabilitados.
 - [Roadmap]: Ritmo "equilibrio": cada fase explica los conceptos de Python que introduce, con analogías a Java.
 - [Phase 01]: Data API cerrada por RLS sin policies: PostgREST devuelve [] (200) con la publishable key; nunca GRANT
+- [Phase 01]: Supabase usa SMTP propio (Gmail 587, app password solo en Supabase); sin SMTP custom no se puede editar el template de recuperación. README de 01-05 debe documentarlo
+- [Phase 01]: Email OTP Length = 6 en Supabase (default 8) para coincidir con la UI
+- [Phase 01]: Password de la DB rotada a alfanumérica; riesgo de 01-02 resuelto
 
 ### Pending Todos
 
@@ -88,6 +92,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-10-29T17:31:14.490Z
-Stopped at: Phase 1 UI-SPEC approved
+Last session: 2026-10-29T18:50:01.107Z
+Stopped at: Completed 01-04-PLAN.md
 Resume file: None

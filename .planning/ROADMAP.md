@@ -58,7 +58,7 @@ Plans:
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 01-04-PLAN.md — Recuperación de contraseña con código OTP + verificación local de punta a punta
+- [x] 01-04-PLAN.md — Recuperación de contraseña con código OTP + verificación local de punta a punta
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
@@ -180,7 +180,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 (el backe
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Fundación end-to-end | 3/6 | In Progress|  |
+| 1. Fundación end-to-end | 4/6 | In Progress|  |
 | 2. Dirección visual y sistema de diseño | 0/TBD | Not started | - |
 | 3. Categorías y carga rápida de gastos | 0/TBD | Not started | - |
 | 4. Cuotas de crédito | 0/TBD | Not started | - |
