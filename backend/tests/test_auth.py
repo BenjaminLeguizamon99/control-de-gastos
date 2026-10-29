@@ -40,7 +40,9 @@ def test_wrong_issuer_401(client: TestClient) -> None:
 
 
 def test_hs256_401(client: TestClient) -> None:
-    assert_401(client, jwt.encode(base_claims(), "secret", algorithm="HS256", headers={"kid": "test"}))
+    assert_401(
+        client, jwt.encode(base_claims(), "s" * 32, algorithm="HS256", headers={"kid": "test"})
+    )
 
 
 def test_alg_none_401(client: TestClient) -> None:
