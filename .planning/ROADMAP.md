@@ -41,7 +41,14 @@ Vamos de un directorio vacío a una PWA instalable donde cargo un gasto desde el
   5. Frontend y backend están desplegados en free tier, `/health` responde con un `SELECT 1` contra Supabase (pooler session mode, puerto 5432), y ruff, mypy y pytest corren limpios.
   6. Desde la pantalla de login el usuario pide "Olvidé mi contraseña", recibe un código de 6 dígitos por email, lo ingresa en la app (sin salir de la PWA) y entra con la contraseña nueva.
 **Conceptos Python**: entornos y dependencias con `uv` (análogo a Maven/Gradle), módulos y paquetes, type hints, `Depends()` de FastAPI como inyección de dependencias (análogo a `@Autowired`), `pydantic-settings` para configuración, migraciones con Alembic (análogo a Flyway), fixtures de pytest (análogo a `@BeforeEach`).
-**Plans**: TBD
+**Plans**: 6 plans
+Plans:
+- [ ] 01-01-PLAN.md — Backend skeleton: /health, /me con JWKS + allowlist, probes con 404 cruzado y RLS, tests contra Docker
+- [ ] 01-02-PLAN.md — Proyecto Supabase endurecido (claves ES256, signups off, usuario, OTP) + migración y verificación con curl
+- [ ] 01-03-PLAN.md — Frontend skeleton: login → / con /me → logout (Vite, Tailwind, Vitest, Node 24)
+- [ ] 01-04-PLAN.md — Recuperación de contraseña con código OTP + verificación local de punta a punta
+- [ ] 01-05-PLAN.md — render.yaml, README, notas de aprendizaje, escaneo de secretos y push a GitHub (main)
+- [ ] 01-06-PLAN.md — Deploy Render + Cloudflare Pages + cron-job.org, smoke tests y prueba en el celular
 **UI hint**: yes
 
 ### Phase 2: Dirección visual y sistema de diseño
@@ -136,7 +143,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 (el backe
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Fundación end-to-end | 0/TBD | Not started | - |
+| 1. Fundación end-to-end | 0/6 | Not started | - |
 | 2. Dirección visual y sistema de diseño | 0/TBD | Not started | - |
 | 3. Categorías y carga rápida de gastos | 0/TBD | Not started | - |
 | 4. Cuotas de crédito | 0/TBD | Not started | - |

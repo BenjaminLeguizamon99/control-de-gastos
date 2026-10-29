@@ -38,15 +38,25 @@ created: 2026-10-29
 
 *Filled by the planner per task (Task ID = {N}-{plan}-{task}). Requirement → test mapping from RESEARCH.md:*
 
-| Requirement | Behavior | Test Type | Automated Command | File Exists | Status |
-|-------------|----------|-----------|-------------------|-------------|--------|
-| AUTH-01 | Login OK / credenciales inválidas (mapeo de errores) | unit + manual | `cd frontend && npx vitest run src/features/auth` | ❌ W0 | ⬜ pending |
-| AUTH-02 | Recargar y seguir logueado | manual | — | n/a | ⬜ pending |
-| AUTH-03 | Logout local → `/login` | manual | — | n/a | ⬜ pending |
-| AUTH-04 | 401 sin header / vencido / HS256 / otra clave / aud / iss / sub no-UUID; 403 fuera de allowlist; 200 `/me` | integration | `cd backend && uv run pytest tests/test_auth.py -x` | ❌ W0 | ⬜ pending |
-| AUTH-05 | Probe de A pedido por B → 404, por A → 200 | integration (Docker) | `cd backend && uv run pytest tests/test_probes.py -x` | ❌ W0 | ⬜ pending |
-| AUTH-06 | Toda tabla de `public` tiene RLS | integration (Docker) | `cd backend && uv run pytest tests/test_rls.py -x` | ❌ W0 | ⬜ pending |
-| SC5 | `/health` 200 con `SELECT 1` | integration + smoke | `cd backend && uv run pytest tests/test_health.py -x` | ❌ W0 | ⬜ pending |
+| Task ID | Requirement | Behavior | Test Type | Automated Command | File Exists | Status |
+|---------|-------------|----------|-----------|-------------------|-------------|--------|
+| 1-01-1 | (supply chain) | uv instalado + paquetes PyPI aprobados | checkpoint | `uv --version` | n/a | ⬜ pending |
+| 1-01-2 | AUTH-04/05/06, SC5 | Tests escritos y fallando (RED) | integration (Docker) | `docker compose up -d --wait db && cd backend && uv run pytest -x -q` (debe fallar) | ❌ W0 (lo crea esta task) | ⬜ pending |
+| 1-01-3 | AUTH-04 | 401 sin header / vencido / HS256 / none / otra clave / aud / iss / sub no-UUID; 403 fuera de allowlist; 200 `/me` | integration | `cd backend && uv run pytest tests/test_auth.py -x` | 1-01-2 | ⬜ pending |
+| 1-01-3 | AUTH-05 | Probe de A pedido por B → 404, por A → 200 | integration (Docker) | `cd backend && uv run pytest tests/test_probes.py -x` | 1-01-2 | ⬜ pending |
+| 1-01-3 | AUTH-06 | Toda tabla de `public` tiene RLS | integration (Docker) | `cd backend && uv run pytest tests/test_rls.py -x` | 1-01-2 | ⬜ pending |
+| 1-01-3 | SC5 | `/health` 200 con `SELECT 1`; ruff + mypy limpios | integration | `cd backend && uv run ruff check . && uv run mypy app && uv run pytest tests/test_health.py -x` | 1-01-2 | ⬜ pending |
+| 1-02-1 | AUTH-06/07 | Supabase configurado, `backend/.env` creado | checkpoint | `grep -q pooler.supabase.com:5432 backend/.env` | n/a | ⬜ pending |
+| 1-02-2 | AUTH-04/06 | JWKS ES256; migración + RLS en Supabase; Data API 42501/[]; signup_disabled | smoke (curl) | `cd backend && uv run alembic current` + query RLS | n/a | ⬜ pending |
+| 1-03-1 | (supply chain) | Node 24 + paquetes npm aprobados | checkpoint | `node --version` | n/a | ⬜ pending |
+| 1-03-2 | AUTH-01 | Mapeo de errores de auth (copy UI-SPEC) | unit | `cd frontend && npx vitest run src/features/auth` | ❌ W0 (lo crea esta task) | ⬜ pending |
+| 1-03-3 | AUTH-01/02/03 | Login, guard, /me, logout local compilan | build + lint | `cd frontend && npm run build && npm run lint && npx vitest run` | 1-03-2 | ⬜ pending |
+| 1-04-1 | AUTH-07 | `/recuperar` con OTP | build + grep | `cd frontend && npm run build && npm run lint` | n/a | ⬜ pending |
+| 1-04-2 | AUTH-01/02/03/07 | Login, F5, reapertura, logout, recuperación con Supabase real | manual | servidores locales 200 (curl) | n/a | ⬜ pending |
+| 1-05-1 | D-03, D-12 | render.yaml + README + notas; sin `.env` versionado | grep | `git ls-files \| grep -E '(^\|/)\.env$'` vacío | n/a | ⬜ pending |
+| 1-05-3 | D-02 | Push a `main` | git | `git ls-remote origin refs/heads/main` | n/a | ⬜ pending |
+| 1-06-2 | SC5, AUTH-04 | `/health` 200, `/me` 401, CORS exacto, SPA fallback, bundle sin secretos | smoke (curl) | curls de 01-06 Task 2 | n/a | ⬜ pending |
+| 1-06-3 | AUTH-01/02/03 | App desplegada en el celular | manual | `curl $API/health` | n/a | ⬜ pending |
 
 *Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
 
