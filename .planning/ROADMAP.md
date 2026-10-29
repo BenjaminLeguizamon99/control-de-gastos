@@ -32,13 +32,14 @@ Vamos de un directorio vacío a una PWA instalable donde cargo un gasto desde el
 **Goal**: El usuario puede iniciar sesión en la app desplegada y el backend reconoce quién es, con la seguridad de datos resuelta desde el día uno
 **Mode:** mvp
 **Depends on**: Nothing (first phase)
-**Requirements**: AUTH-01, AUTH-02, AUTH-03, AUTH-04, AUTH-05, AUTH-06
+**Requirements**: AUTH-01, AUTH-02, AUTH-03, AUTH-04, AUTH-05, AUTH-06, AUTH-07
 **Success Criteria** (what must be TRUE):
   1. El usuario inicia sesión con email y contraseña, recarga la página y sigue logueado. Puede cerrar sesión desde cualquier pantalla.
   2. Una request al backend sin JWT, con un JWT vencido o con un JWT firmado con otro algoritmo recibe 401. Con un token válido, `/me` devuelve el `user_id` del token.
   3. Un test automatizado demuestra que un usuario que pide un recurso de otro usuario recibe 404 (queries siempre con `WHERE id = ? AND user_id = ?`).
   4. Un `curl` a `/rest/v1/<tabla>` con la anon key no devuelve datos (RLS habilitado sin policies) y no se puede crear una cuenta nueva (signups deshabilitados).
   5. Frontend y backend están desplegados en free tier, `/health` responde con un `SELECT 1` contra Supabase (pooler session mode, puerto 5432), y ruff, mypy y pytest corren limpios.
+  6. Desde la pantalla de login el usuario pide "Olvidé mi contraseña", recibe un código de 6 dígitos por email, lo ingresa en la app (sin salir de la PWA) y entra con la contraseña nueva.
 **Conceptos Python**: entornos y dependencias con `uv` (análogo a Maven/Gradle), módulos y paquetes, type hints, `Depends()` de FastAPI como inyección de dependencias (análogo a `@Autowired`), `pydantic-settings` para configuración, migraciones con Alembic (análogo a Flyway), fixtures de pytest (análogo a `@BeforeEach`).
 **Plans**: TBD
 **UI hint**: yes

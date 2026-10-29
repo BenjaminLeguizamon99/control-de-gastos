@@ -13,6 +13,7 @@
 - [ ] **AUTH-04**: El backend rechaza (401) toda request sin JWT válido (JWKS, algoritmos fijos, `aud` + `iss` verificados)
 - [ ] **AUTH-05**: Un usuario solo puede ver/modificar sus propios datos; recursos ajenos devuelven 404
 - [ ] **AUTH-06**: Las tablas no son accesibles por la Data API pública de Supabase (RLS habilitado sin policies) y los registros nuevos están deshabilitados
+- [ ] **AUTH-07**: El usuario puede recuperar su contraseña desde la app: pide un código de 6 dígitos por email (OTP de recuperación de Supabase, sin link), lo ingresa en la PWA y define una contraseña nueva
 
 ### Categorías (CAT)
 
@@ -105,6 +106,7 @@
 | AUTH-04 | Phase 1 | Pending |
 | AUTH-05 | Phase 1 | Pending |
 | AUTH-06 | Phase 1 | Pending |
+| AUTH-07 | Phase 1 | Pending |
 | CAT-01 | Phase 3 | Pending |
 | CAT-02 | Phase 3 | Pending |
 | CAT-03 | Phase 3 | Pending |
@@ -142,8 +144,8 @@
 | DIS-06 | Phase 7 | Pending |
 
 **Coverage:**
-- v1 requirements: 41 total
-- Mapped to phases: 41
+- v1 requirements: 42 total
+- Mapped to phases: 42
 - Unmapped: 0 ✓
 
 ---

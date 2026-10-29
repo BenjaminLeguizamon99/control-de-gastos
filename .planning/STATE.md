@@ -12,7 +12,7 @@ See: .planning/PROJECT.md (updated 2026-10-29)
 Phase: 1 of 7 (Fundación end-to-end)
 Plan: 0 of TBD in current phase
 Status: Ready to plan
-Last activity: 2026-10-29 — Roadmap creado (7 fases, 41/41 requisitos mapeados)
+Last activity: 2026-10-29 — Roadmap creado (7 fases, 41/41 requisitos mapeados; luego +AUTH-07 → 42)
 
 Progress: [░░░░░░░░░░] 0%
 
