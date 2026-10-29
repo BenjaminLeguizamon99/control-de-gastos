@@ -54,7 +54,7 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 01-02-PLAN.md — Proyecto Supabase endurecido (claves ES256, signups off, usuario, OTP) + migración y verificación con curl
+- [x] 01-02-PLAN.md — Proyecto Supabase endurecido (claves ES256, signups off, usuario, OTP) + migración y verificación con curl
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
@@ -180,7 +180,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 (el backe
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Fundación end-to-end | 2/6 | In Progress|  |
+| 1. Fundación end-to-end | 3/6 | In Progress|  |
 | 2. Dirección visual y sistema de diseño | 0/TBD | Not started | - |
 | 3. Categorías y carga rápida de gastos | 0/TBD | Not started | - |
 | 4. Cuotas de crédito | 0/TBD | Not started | - |
