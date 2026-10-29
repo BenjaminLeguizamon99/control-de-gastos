@@ -49,8 +49,8 @@ Vamos de un directorio vacío a una PWA instalable donde cargo un gasto desde el
 Plans:
 **Wave 1**
 
-- [ ] 01-01-PLAN.md — Backend skeleton: /health, /me con JWKS + allowlist, probes con 404 cruzado y RLS, tests contra Docker
-- [ ] 01-03-PLAN.md — Frontend skeleton: login → / con /me → logout (Vite, Tailwind, Vitest, Node 24)
+- [x] 01-01-PLAN.md — Backend skeleton: /health, /me con JWKS + allowlist, probes con 404 cruzado y RLS, tests contra Docker
+- [x] 01-03-PLAN.md — Frontend skeleton: login → / con /me → logout (Vite, Tailwind, Vitest, Node 24)
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
@@ -180,7 +180,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 (el backe
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Fundación end-to-end | 0/6 | Not started | - |
+| 1. Fundación end-to-end | 2/6 | In Progress|  |
 | 2. Dirección visual y sistema de diseño | 0/TBD | Not started | - |
 | 3. Categorías y carga rápida de gastos | 0/TBD | Not started | - |
 | 4. Cuotas de crédito | 0/TBD | Not started | - |
