@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { z } from 'zod'
+import { Button } from '../../components/ui/Button'
 import { supabase } from '../../lib/supabase'
 import { authErrorMessage } from './authErrors'
 
@@ -10,9 +11,9 @@ const passwordSchema = z.string().min(8)
 const RATE_LIMITS = ['over_email_send_rate_limit', 'over_request_rate_limit']
 
 const inputBase =
-  'w-full min-h-11 rounded border px-4 text-base text-zinc-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600'
+  'w-full min-h-12 rounded-control border bg-papel-2 px-4 text-cuerpo text-tinta focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-acento'
 const linkClass =
-  'inline-flex min-h-11 items-center py-2 text-sm text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600'
+  'inline-flex min-h-11 items-center py-2 text-etiqueta font-normal text-acento focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-acento'
 
 export function RecoverPage() {
   const navigate = useNavigate()
@@ -92,7 +93,7 @@ export function RecoverPage() {
     return {
       'aria-invalid': err ? true : undefined,
       'aria-describedby': err ? `${name}-error` : undefined,
-      className: `${inputBase} ${err ? 'border-red-600' : 'border-zinc-300'}`,
+      className: `${inputBase} ${err ? 'border-peligro' : 'border-borde'}`,
     }
   }
 
@@ -100,7 +101,7 @@ export function RecoverPage() {
     const err = fieldErrors[name]
     return (
       err && (
-        <p id={`${name}-error`} role="alert" className="mt-1 text-sm text-red-600">
+        <p id={`${name}-error`} role="alert" className="mt-1 text-etiqueta font-normal text-peligro">
           {err}
         </p>
       )
@@ -108,14 +109,14 @@ export function RecoverPage() {
   }
 
   return (
-    <main className="min-h-dvh px-4 pb-[env(safe-area-inset-bottom)] text-zinc-900">
+    <main className="min-h-dvh px-4 pb-[env(safe-area-inset-bottom)] text-tinta">
       <div className="mx-auto mt-8 max-w-sm sm:mt-12">
-        <h1 className="mb-2 text-2xl leading-tight font-semibold">Recuperar contraseña</h1>
+        <h1 className="mb-2 text-titulo font-casual">Recuperar contraseña</h1>
         {step === 1 ? (
           <form onSubmit={onRequest} noValidate>
-            <p className="mb-6 text-sm">Te mandamos un código de 6 dígitos a tu email.</p>
+            <p className="mb-6 text-etiqueta font-normal text-tinta-2">Te mandamos un código de 6 dígitos a tu email.</p>
             <div className="mb-6">
-              <label htmlFor="email" className="mb-2 block text-sm font-semibold">
+              <label htmlFor="email" className="mb-2 block text-etiqueta">
                 Email
               </label>
               <input
@@ -132,24 +133,20 @@ export function RecoverPage() {
               {fieldError('email')}
             </div>
             {serverError && (
-              <p role="alert" className="mb-4 text-sm text-red-600">
+              <p role="alert" className="mb-4 text-etiqueta font-normal text-peligro">
                 {serverError}
               </p>
             )}
-            <button
-              type="submit"
-              disabled={submitting}
-              className="min-h-11 w-full rounded bg-blue-600 px-4 font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 disabled:opacity-60"
-            >
-              {submitting ? 'Enviando…' : 'Enviar código'}
-            </button>
+            <Button variant="primario" type="submit" fullWidth loading={submitting} loadingLabel="Enviando…">
+              Enviar código
+            </Button>
           </form>
         ) : (
           <form onSubmit={onChange} noValidate>
-            <p className="mb-6 text-sm">Revisá tu email e ingresá el código que te llegó.</p>
+            <p className="mb-6 text-etiqueta font-normal text-tinta-2">Revisá tu email e ingresá el código que te llegó.</p>
             {!verified && (
               <div className="mb-4">
-                <label htmlFor="code" className="mb-2 block text-sm font-semibold">
+                <label htmlFor="code" className="mb-2 block text-etiqueta">
                   Código
                 </label>
                 <input
@@ -171,7 +168,7 @@ export function RecoverPage() {
               </div>
             )}
             <div className="mb-6">
-              <label htmlFor="password" className="mb-2 block text-sm font-semibold">
+              <label htmlFor="password" className="mb-2 block text-etiqueta">
                 Contraseña nueva
               </label>
               <input
@@ -185,17 +182,13 @@ export function RecoverPage() {
               {fieldError('password')}
             </div>
             {serverError && (
-              <p role="alert" className="mb-4 text-sm text-red-600">
+              <p role="alert" className="mb-4 text-etiqueta font-normal text-peligro">
                 {serverError}
               </p>
             )}
-            <button
-              type="submit"
-              disabled={submitting}
-              className="min-h-11 w-full rounded bg-blue-600 px-4 font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 disabled:opacity-60"
-            >
-              {submitting ? 'Guardando…' : 'Cambiar contraseña'}
-            </button>
+            <Button variant="primario" type="submit" fullWidth loading={submitting} loadingLabel="Guardando…">
+              Cambiar contraseña
+            </Button>
           </form>
         )}
         <Link to="/login" className={`${linkClass} mt-4`}>

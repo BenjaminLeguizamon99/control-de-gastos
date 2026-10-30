@@ -1,13 +1,14 @@
 import { useState, type FormEvent } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { z } from 'zod'
+import { Button } from '../../components/ui/Button'
 import { supabase } from '../../lib/supabase'
 import { authErrorMessage } from './authErrors'
 
 const emailSchema = z.email()
 
 const inputBase =
-  'w-full min-h-11 rounded border px-4 text-base text-zinc-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600'
+  'w-full min-h-12 rounded-control border bg-papel-2 px-4 text-cuerpo text-tinta focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-acento'
 
 export function LoginPage() {
   const navigate = useNavigate()
@@ -38,12 +39,12 @@ export function LoginPage() {
   }
 
   return (
-    <main className="min-h-dvh px-4 pb-[env(safe-area-inset-bottom)] text-zinc-900">
+    <main className="min-h-dvh px-4 pb-[env(safe-area-inset-bottom)] text-tinta">
       <div className="mx-auto mt-8 max-w-sm sm:mt-12">
-        <h1 className="mb-6 text-2xl leading-tight font-semibold">Iniciar sesión</h1>
+        <h1 className="mb-6 text-titulo font-casual">Iniciar sesión</h1>
         <form onSubmit={onSubmit} noValidate>
           <div className="mb-4">
-            <label htmlFor="email" className="mb-2 block text-sm font-semibold">
+            <label htmlFor="email" className="mb-2 block text-etiqueta">
               Email
             </label>
             <input
@@ -57,16 +58,16 @@ export function LoginPage() {
               onChange={(e) => setEmail(e.target.value)}
               aria-invalid={emailError ? true : undefined}
               aria-describedby={emailError ? 'email-error' : undefined}
-              className={`${inputBase} ${emailError ? 'border-red-600' : 'border-zinc-300'}`}
+              className={`${inputBase} ${emailError ? 'border-peligro' : 'border-borde'}`}
             />
             {emailError && (
-              <p id="email-error" role="alert" className="mt-1 text-sm text-red-600">
+              <p id="email-error" role="alert" className="mt-1 text-etiqueta font-normal text-peligro">
                 {emailError}
               </p>
             )}
           </div>
           <div className="mb-6">
-            <label htmlFor="password" className="mb-2 block text-sm font-semibold">
+            <label htmlFor="password" className="mb-2 block text-etiqueta">
               Contraseña
             </label>
             <input
@@ -75,27 +76,23 @@ export function LoginPage() {
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className={`${inputBase} border-zinc-300`}
+              className={`${inputBase} border-borde`}
             />
             <Link
               to="/recuperar"
-              className="inline-flex min-h-11 items-center py-2 text-sm text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+              className="inline-flex min-h-11 items-center py-2 text-etiqueta font-normal text-acento focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-acento"
             >
               Olvidé mi contraseña
             </Link>
           </div>
           {serverError && (
-            <p role="alert" className="mb-4 text-sm text-red-600">
+            <p role="alert" className="mb-4 text-etiqueta font-normal text-peligro">
               {serverError}
             </p>
           )}
-          <button
-            type="submit"
-            disabled={submitting}
-            className="min-h-11 w-full rounded bg-blue-600 px-4 font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 disabled:opacity-60"
-          >
-            {submitting ? 'Ingresando…' : 'Ingresar'}
-          </button>
+          <Button variant="primario" type="submit" fullWidth loading={submitting} loadingLabel="Ingresando…">
+            Ingresar
+          </Button>
         </form>
       </div>
     </main>

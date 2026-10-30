@@ -12,7 +12,7 @@ const queryClient = new QueryClient({ defaultOptions: { queries: { retry: 1 } } 
 function App() {
   const { loading } = useAuth()
   if (loading)
-    return <div className="flex min-h-dvh items-center justify-center text-zinc-900">Cargando…</div>
+    return <div className="flex min-h-dvh items-center justify-center text-tinta">Cargando…</div>
   return <RouterProvider router={router} />
 }
 

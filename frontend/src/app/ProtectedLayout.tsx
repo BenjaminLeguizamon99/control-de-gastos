@@ -1,5 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query'
 import { Navigate, Outlet, useNavigate } from 'react-router'
+import { Button } from '../components/ui/Button'
 import { useAuth } from '../features/auth/AuthProvider'
 import { supabase } from '../lib/supabase'
 
@@ -18,16 +19,12 @@ export function ProtectedLayout() {
   }
 
   return (
-    <div className="min-h-dvh pb-[env(safe-area-inset-bottom)] text-zinc-900">
-      <header className="flex h-14 items-center justify-between bg-zinc-100 px-4">
+    <div className="min-h-dvh pb-[env(safe-area-inset-bottom)] text-tinta">
+      <header className="flex h-14 items-center justify-between bg-papel-2 px-4">
         <span className="font-semibold">Control de Gastos</span>
-        <button
-          type="button"
-          onClick={logout}
-          className="min-h-11 rounded border border-zinc-300 px-4 text-zinc-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
-        >
+        <Button variant="secundario" onClick={logout}>
           Cerrar sesión
-        </button>
+        </Button>
       </header>
       <Outlet />
     </div>
