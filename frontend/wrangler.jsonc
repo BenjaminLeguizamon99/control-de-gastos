@@ -1,0 +1,9 @@
+{
+  // Cloudflare Workers (static assets): sirve el build de Vite y manda cualquier ruta a index.html (SPA)
+  "name": "control-de-gastos",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  }
+}
