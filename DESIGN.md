@@ -140,6 +140,66 @@ Cuándo usar cada variante:
 
 Alto mínimo 48px, padding horizontal 24px, `rounded-control`, 16px/600, sin sombra. Foco: outline 2px `acento` con offset 2px.
 
+### Montos: regla general
+
+Los montos viajan siempre como **string** (así los serializa Pydantic desde `Decimal`), nunca como `number`. La lógica vive en `frontend/src/lib/money.ts`: el formateo le pasa el string a `Intl.NumberFormat('es-AR')` y las cuentas (usado, exceso, porcentaje, estado) se hacen en `BigInt` de centavos con `aCentavos` / `deCentavos`. Prohibido `parseFloat`, `toFixed` y `Number(` sobre montos (el único `Number(` es el porcentaje 0..100 ya calculado en BigInt).
+
+### `Monto`
+
+```tsx
+<Monto value="125430.50" size="monto" className="text-tinta" />
+```
+
+| Prop | Valores | Por defecto |
+|------|---------|-------------|
+| `value` | string decimal (`'125430.50'`, `'-15000'`) | — |
+| `size` | `monto` (cifra grande, centavos en `text-titulo`) · `cuerpo` (todo 16px) | `cuerpo` |
+| `className` | color del monto (va en el contenedor) | — |
+
+Formato es-AR sin `,00`: `$ 125.430`, `$ 125.430,50`, `$ 0`. Un string inválido se ve como `—` (nunca "$ NaN"). Usar en todo lugar donde se muestre plata.
+
+### `RestanteMes`
+
+```tsx
+<RestanteMes restante="25000.50" presupuesto="200000" />
+```
+
+Patrón "cuánto me queda": label "Te quedan" (o "Te pasaste"), monto grande, barra de usado y texto de estado. Recibe los dos montos como string y calcula el estado con `estadoRestante` y el ancho con `porcentajeUsado` (ver "Estados del presupuesto"). La barra es `role="meter"` con `aria-valuetext` igual al texto de estado.
+
+**Excepción a "sin style inline":** el relleno de la barra usa `style={{ '--usado': '60%' }}` con la clase `w-(--usado)`, porque el ancho es un dato de runtime. Es la única; el grep G2 la excluye buscando `--usado`.
+
+### `AmountInput`
+
+```tsx
+<AmountInput value={monto} onChange={setMonto} error={errores.monto} help="Usá coma para los centavos." />
+```
+
+| Prop | Valores | Por defecto |
+|------|---------|-------------|
+| `value` | string normalizado (`'1234.5'`, `''`) | — |
+| `onChange` | recibe el string normalizado, nunca un `number` | — |
+| `label` | texto del label | `Monto` |
+| `error` | mensaje (`MONTO_VACIO`, `MONTO_DECIMALES`); pone `aria-invalid` y `role="alert"` | — |
+| `help` | ayuda bajo el campo cuando no hay error | — |
+
+`type="text"` + `inputMode="decimal"`: abre el teclado numérico nativo y permite mostrar los miles en vivo (`1.234,5`). Los separadores de miles los pone la app; el usuario solo tipea dígitos y una coma, con hasta 2 decimales. Al salir del campo se completa a `1.234,50`.
+
+**Decisión del punto:** un `.` tipeado al final se toma como coma decimal (hay teclados que solo traen punto), así que tipear `1.500` queda `1,50`, no mil quinientos. La vista en vivo lo hace evidente apenas se tipea el punto (`1,`). Un `.` en medio del texto se descarta.
+
+## Estados del presupuesto
+
+Lo calcula `estadoRestante` en `frontend/src/lib/money.ts` con `UMBRAL_CERCA = 20` (porcentaje del presupuesto). El umbral no es CSS: vive solo en esa constante.
+
+| Estado | Condición | Monto | Barra | Texto bajo la barra |
+|--------|-----------|-------|-------|---------------------|
+| `normal` | restante ≥ 20% del presupuesto | `tinta` | `acento` | "Usaste $ X de $ Y" en `tinta-2` |
+| `cerca` | 0 ≤ restante < 20% | `alerta` | `alerta` | "! Te queda poco este mes. Usaste $ X de $ Y" en `alerta` |
+| `pasado` | restante < 0 | `peligro` | `peligro`, llena al 100% | "Te pasaste $ Z. Usaste $ X de $ Y" en `peligro` |
+
+- Restante exactamente 0 es `cerca` ("Te quedan $ 0").
+- En `pasado` el label cambia a "Te pasaste" y el monto muestra el valor absoluto del exceso.
+- El estado siempre va con texto, nunca solo por color (D-09): el "!" y las frases cambian aunque no se vean los colores.
+
 ## Voz
 
 Español rioplatense con voseo y frases cortas (D-03). **El humor va solo en estados vacíos y confirmaciones (D-04).** Errores, botones, labels y montos son siempre serios y claros. Los errores dicen qué pasó y cómo seguir, sin disculparse.

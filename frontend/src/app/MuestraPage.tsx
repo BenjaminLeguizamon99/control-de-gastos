@@ -1,9 +1,14 @@
+import { useState } from 'react'
+import { AmountInput } from '../components/ui/AmountInput'
 import { Button } from '../components/ui/Button'
 import { Monto } from '../components/ui/Monto'
 import { RestanteMes } from '../components/ui/RestanteMes'
+import { MONTO_VACIO } from '../lib/money'
 
 // Solo datos fijos: es pública y no puede tocar la API ni la sesión (T-02-04)
 export function MuestraPage() {
+  const [monto, setMonto] = useState('')
+
   return (
     <main className="mx-auto min-h-dvh max-w-120 px-4 pb-16 sm:px-6">
       <h1 className="pt-8 text-titulo font-casual">Sistema de diseño</h1>
@@ -38,6 +43,14 @@ export function MuestraPage() {
           <Button variant="primario" loading loadingLabel="Guardando…">
             Guardar gasto
           </Button>
+        </div>
+      </section>
+
+      <section className="mt-12">
+        <h2 className="mb-4 text-titulo font-casual">Monto</h2>
+        <AmountInput value={monto} onChange={setMonto} help="Usá coma para los centavos." />
+        <div className="mt-8">
+          <AmountInput label="Monto" value="" onChange={() => {}} error={MONTO_VACIO} />
         </div>
       </section>
 
