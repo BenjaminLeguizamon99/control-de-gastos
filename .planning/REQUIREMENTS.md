@@ -64,8 +64,8 @@
 
 ### Diseño y PWA (DIS)
 
-- [ ] **DIS-01**: Se define una dirección visual propia (paleta, tipografía, tono) con la skill `frontend-design`, evitando un look genérico
-- [ ] **DIS-02**: Las decisiones de diseño quedan documentadas en `DESIGN.md` y implementadas como tokens únicos (`tokens.css`) usados por todos los componentes
+- [x] **DIS-01**: Se define una dirección visual propia (paleta, tipografía, tono) con la skill `frontend-design`, evitando un look genérico
+- [x] **DIS-02**: Las decisiones de diseño quedan documentadas en `DESIGN.md` y implementadas como tokens únicos (`tokens.css`) usados por todos los componentes
 - [ ] **DIS-03**: La interfaz es mobile first y se ve bien en celular, tablet y computadora
 - [ ] **DIS-04**: La app es instalable como PWA (manifest, íconos, service worker que cachea solo el shell, aviso de actualización)
 - [ ] **DIS-05**: En iOS la PWA respeta safe areas y no hace zoom al tocar inputs
@@ -136,8 +136,8 @@
 | RES-07 | Phase 5 | Pending |
 | LIS-01 | Phase 5 | Pending |
 | LIS-02 | Phase 6 | Pending |
-| DIS-01 | Phase 2 | Pending |
-| DIS-02 | Phase 2 | Pending |
+| DIS-01 | Phase 2 | Complete |
+| DIS-02 | Phase 2 | Complete |
 | DIS-03 | Phase 7 | Pending |
 | DIS-04 | Phase 7 | Pending |
 | DIS-05 | Phase 7 | Pending |

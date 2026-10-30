@@ -89,7 +89,7 @@ Plans:
 Plans:
 **Wave 1**
 
-- [ ] 02-01-PLAN.md — Tokens + Recursive + DESIGN.md con la skill, Button y migración de login/recuperar/home
+- [x] 02-01-PLAN.md — Tokens + Recursive + DESIGN.md con la skill, Button y migración de login/recuperar/home
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
@@ -199,7 +199,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 (el backe
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Fundación end-to-end | 6/6 | Complete   | 2026-10-30 |
-| 2. Dirección visual y sistema de diseño | 0/TBD | Not started | - |
+| 2. Dirección visual y sistema de diseño | 1/4 | In Progress|  |
 | 3. Categorías y carga rápida de gastos | 0/TBD | Not started | - |
 | 4. Cuotas de crédito | 0/TBD | Not started | - |
 | 5. Ingresos y resumen mensual | 0/TBD | Not started | - |
