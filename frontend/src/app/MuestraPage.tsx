@@ -1,13 +1,62 @@
 import { useState } from 'react'
 import { AmountInput } from '../components/ui/AmountInput'
 import { Button } from '../components/ui/Button'
+import { CategoryGrid, type Categoria, type ColorCategoria } from '../components/ui/CategoryGrid'
 import { Monto } from '../components/ui/Monto'
 import { RestanteMes } from '../components/ui/RestanteMes'
+import { SegmentedControl } from '../components/ui/SegmentedControl'
 import { MONTO_VACIO } from '../lib/money'
+
+const CATEGORIAS: Categoria[] = [
+  { id: 'comida', emoji: '🍔', nombre: 'Comida', color: 1 },
+  { id: 'transporte', emoji: '🚌', nombre: 'Transporte', color: 6 },
+  { id: 'super', emoji: '🛒', nombre: 'Súper', color: 4 },
+  { id: 'casa', emoji: '🏠', nombre: 'Casa', color: 10 },
+  { id: 'servicios', emoji: '💡', nombre: 'Servicios', color: 3 },
+  { id: 'salud', emoji: '💊', nombre: 'Salud', color: 5 },
+  { id: 'salidas', emoji: '🎉', nombre: 'Salidas', color: 9 },
+  { id: 'regalos', emoji: '🎁', nombre: 'Regalos', color: 7 },
+  { id: 'otros', emoji: '📦', nombre: 'Otros', color: 2 },
+]
+
+const MEDIOS = [
+  { value: 'efectivo', label: 'Efectivo' },
+  { value: 'debito', label: 'Débito' },
+  { value: 'credito', label: 'Crédito' },
+]
+
+// Clases enteras: Tailwind solo genera las que encuentra completas en el código
+const SOLIDO: Record<ColorCategoria, string> = {
+  1: 'bg-cat-1',
+  2: 'bg-cat-2',
+  3: 'bg-cat-3',
+  4: 'bg-cat-4',
+  5: 'bg-cat-5',
+  6: 'bg-cat-6',
+  7: 'bg-cat-7',
+  8: 'bg-cat-8',
+  9: 'bg-cat-9',
+  10: 'bg-cat-10',
+}
+
+const NOMBRES_COLOR: [ColorCategoria, string][] = [
+  [1, 'Tomate'],
+  [2, 'Mandarina'],
+  [3, 'Mostaza'],
+  [4, 'Oliva'],
+  [5, 'Eucalipto'],
+  [6, 'Pizarra'],
+  [7, 'Lavanda'],
+  [8, 'Uva'],
+  [9, 'Rosa'],
+  [10, 'Canela'],
+]
 
 // Solo datos fijos: es pública y no puede tocar la API ni la sesión (T-02-04)
 export function MuestraPage() {
   const [monto, setMonto] = useState('')
+  const [medio, setMedio] = useState('debito')
+  const [categoria, setCategoria] = useState<string | null>(null)
 
   return (
     <main className="mx-auto min-h-dvh max-w-120 px-4 pb-16 sm:px-6">
@@ -55,6 +104,16 @@ export function MuestraPage() {
       </section>
 
       <section className="mt-12">
+        <h2 className="mb-4 text-titulo font-casual">Medio de pago</h2>
+        <SegmentedControl legend="Medio de pago" options={MEDIOS} value={medio} onChange={setMedio} />
+      </section>
+
+      <section className="mt-12">
+        <h2 className="mb-4 text-titulo font-casual">Categorías</h2>
+        <CategoryGrid categorias={CATEGORIAS} value={categoria} onChange={setCategoria} />
+      </section>
+
+      <section className="mt-12">
         <h2 className="mb-4 text-titulo font-casual">Voz</h2>
         <h3 className="text-titulo font-casual">Todavía no anotaste nada este mes</h3>
         <p className="mt-2 text-cuerpo text-tinta-2">
@@ -64,6 +123,18 @@ export function MuestraPage() {
           Cargar gasto
         </Button>
         <p className="mt-8 text-cuerpo">Anotado. Tu billetera llora un poquito.</p>
+      </section>
+
+      <section className="mt-12">
+        <h2 className="mb-4 text-titulo font-casual">Colores de categoría</h2>
+        <ul className="grid grid-cols-2 gap-4 rounded-tile bg-papel-2 p-4">
+          {NOMBRES_COLOR.map(([color, nombre]) => (
+            <li key={color} className="flex items-center gap-2">
+              <span aria-hidden="true" className={`size-8 rounded-control ${SOLIDO[color]}`} />
+              <span className="text-etiqueta">{nombre}</span>
+            </li>
+          ))}
+        </ul>
       </section>
     </main>
   )

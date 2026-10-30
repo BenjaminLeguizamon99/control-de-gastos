@@ -90,6 +90,9 @@
   --text-monto: 2.75rem;
   --text-monto--line-height: 1;
   --text-monto--font-weight: 600;
+  /* Solo para el emoji de categoría: va como ícono, no como texto */
+  --text-emoji: 1.75rem;
+  --text-emoji--line-height: 1;
 
   --radius-segmento: 8px;
   --radius-control: 12px;
