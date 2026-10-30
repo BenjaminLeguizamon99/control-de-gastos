@@ -19,7 +19,7 @@ Vamos de un directorio vacío a una PWA instalable donde cargo un gasto desde el
 - Integer phases (1, 2, 3): Planned milestone work
 - Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
 
-- [ ] **Phase 1: Fundación end-to-end** - Esqueleto que funciona de punta a punta: login, `/me` protegido por JWT, DB con RLS, deploy temprano
+- [x] **Phase 1: Fundación end-to-end** - Esqueleto que funciona de punta a punta: login, `/me` protegido por JWT, DB con RLS, deploy temprano (completed 2026-10-30)
 - [ ] **Phase 2: Dirección visual y sistema de diseño** - Identidad visual propia con `frontend-design`, `DESIGN.md`, `tokens.css` y componentes base
 - [ ] **Phase 3: Categorías y carga rápida de gastos** - Categorías base editables y un formulario de gasto rápido en el celular (1 cuota)
 - [ ] **Phase 4: Cuotas de crédito** - Compras en N cuotas con preview y mes de la primera cuota elegible
@@ -66,7 +66,7 @@ Plans:
 
 **Wave 5** *(blocked on Wave 4 completion)*
 
-- [ ] 01-06-PLAN.md — Deploy Render + Cloudflare Pages + cron-job.org, smoke tests y prueba en el celular
+- [x] 01-06-PLAN.md — Deploy Render + Cloudflare Pages + cron-job.org, smoke tests y prueba en el celular
 
 **UI hint**: yes
 
@@ -180,7 +180,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 (el backe
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Fundación end-to-end | 5/6 | In Progress|  |
+| 1. Fundación end-to-end | 6/6 | Complete   | 2026-10-30 |
 | 2. Dirección visual y sistema de diseño | 0/TBD | Not started | - |
 | 3. Categorías y carga rápida de gastos | 0/TBD | Not started | - |
 | 4. Cuotas de crédito | 0/TBD | Not started | - |

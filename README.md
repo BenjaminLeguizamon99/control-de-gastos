@@ -4,7 +4,7 @@ App web personal (PWA, mobile first) para cargar gastos en segundos y saber cuá
 
 - `backend/`: FastAPI + SQLAlchemy + Alembic (Python 3.13, uv). Verifica el JWT de Supabase por JWKS.
 - `frontend/`: React + TypeScript (Vite). Supabase se usa solo para auth; los datos pasan por el backend.
-- Datos y auth: Postgres + Supabase Auth. Deploy: Render (API), Cloudflare Pages (frontend), cron-job.org (keep-alive).
+- Datos y auth: Postgres + Supabase Auth. Deploy: Render (API), Cloudflare Workers con static assets (frontend), cron-job.org (keep-alive).
 
 > **Regla:** nunca commitear `.env`. Nunca poner la secret key / `service_role` de Supabase ni la URL de la DB en el frontend: todo lo `VITE_*` queda público en el JS servido. Si un secreto llega a GitHub, rotarlo en Supabase (DB password o keys) en el momento.
 
@@ -95,16 +95,19 @@ curl -s -X POST "$SUPABASE_URL/auth/v1/signup" -H "apikey: <publishable>" \
    - `DATABASE_URL`: la URI del pooler de arriba.
    - `SUPABASE_URL`: `https://<ref>.supabase.co`, sin barra final.
    - `ALLOWED_USER_IDS`: `["<uuid>"]`.
-   - `CORS_ORIGINS`: `["https://<tu-proyecto>.pages.dev"]`.
+   - `CORS_ORIGINS`: `["https://control-de-gastos.<tu-subdominio>.workers.dev"]` (origen exacto del frontend, sin barra final).
+   - **Ojo:** `ALLOWED_USER_IDS` y `CORS_ORIGINS` son listas y pydantic-settings las lee como **JSON**. Un UUID pelado (sin `["..."]`) hace que el servicio crashee al arrancar.
 3. Cada push a `main` redeploya. `GET https://<servicio>.onrender.com/health` debe dar `{"status":"ok"}`.
 
-### 3. Cloudflare Pages (frontend)
+### 3. Cloudflare Workers (frontend)
 
-1. Workers & Pages → Create → Pages → conectar el repo.
-2. Root directory `frontend`, build command `npm run build`, output `dist`.
-3. Variables de build: `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`, `VITE_API_URL` (`https://<servicio>.onrender.com`, sin barra final).
-4. No hace falta `404.html`: Pages ya sirve la SPA.
-5. En Supabase → Authentication → URL Configuration, poner la URL de Pages como Site URL.
+El proyecto conectado a Git se crea como **Worker con static assets** (Workers Builds), no como Pages. `frontend/wrangler.jsonc` le dice que sirva `./dist` y mande cualquier ruta a `index.html` (SPA).
+
+1. Workers & Pages → Create → conectar el repo.
+2. Settings → Build: Root directory `frontend`, build command `npm run build`, deploy command `npx wrangler deploy --config wrangler.jsonc`. Sin `--config`, la auto-config de wrangler ignora el archivo y publica la carpeta fuente cruda.
+3. Settings → Build → Variables and secrets (variables de **build**, no de runtime): `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`, `VITE_API_URL` (`https://<servicio>.onrender.com`, sin barra final) y `NODE_VERSION=26`.
+4. URL resultante: `https://control-de-gastos.<tu-subdominio>.workers.dev`. Ponerla en `CORS_ORIGINS` de Render.
+5. En Supabase → Authentication → URL Configuration, poner esa URL como Site URL.
 
 ### 4. cron-job.org (keep-alive)
 
