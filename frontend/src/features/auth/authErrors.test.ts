@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { authErrorMessage, NETWORK_ERROR } from './authErrors'
+import { authErrorMessage, GENERIC_ERROR, NETWORK_ERROR } from './authErrors'
 
 describe('authErrorMessage', () => {
   it.each([
@@ -19,7 +19,11 @@ describe('authErrorMessage', () => {
     )
   })
 
-  it.each([[undefined], ['cualquier_otro'], ['toString']])('fallback for %s', (code) => {
-    expect(authErrorMessage(code)).toBe(NETWORK_ERROR)
+  it('no code (no response) falls back to NETWORK_ERROR', () => {
+    expect(authErrorMessage(undefined)).toBe(NETWORK_ERROR)
+  })
+
+  it.each([['email_not_confirmed'], ['toString']])('unmapped code %s gets GENERIC_ERROR', (code) => {
+    expect(authErrorMessage(code)).toBe(GENERIC_ERROR)
   })
 })

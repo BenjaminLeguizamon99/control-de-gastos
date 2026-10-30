@@ -13,7 +13,11 @@ const MESSAGES: Record<string, string> = {
   same_password: 'La contraseña nueva tiene que ser distinta de la actual.',
 }
 
+export const GENERIC_ERROR = 'Algo salió mal. Intentá de nuevo en unos minutos.'
+
 export function authErrorMessage(code: string | undefined): string {
+  // Sin code = no hubo respuesta del servidor; con code no mapeado = error real de Supabase
+  if (!code) return NETWORK_ERROR
   // Object.hasOwn evita que "toString" & co. devuelvan funciones del prototipo
-  return code && Object.hasOwn(MESSAGES, code) ? MESSAGES[code] : NETWORK_ERROR
+  return Object.hasOwn(MESSAGES, code) ? MESSAGES[code] : GENERIC_ERROR
 }
