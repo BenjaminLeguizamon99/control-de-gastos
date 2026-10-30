@@ -93,7 +93,7 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 02-02-PLAN.md — money.ts (TDD), Monto, RestanteMes, AmountInput y /muestra pública
+- [x] 02-02-PLAN.md — money.ts (TDD), Monto, RestanteMes, AmountInput y /muestra pública
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
@@ -199,7 +199,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 (el backe
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Fundación end-to-end | 6/6 | Complete   | 2026-10-30 |
-| 2. Dirección visual y sistema de diseño | 1/4 | In Progress|  |
+| 2. Dirección visual y sistema de diseño | 2/4 | In Progress|  |
 | 3. Categorías y carga rápida de gastos | 0/TBD | Not started | - |
 | 4. Cuotas de crédito | 0/TBD | Not started | - |
 | 5. Ingresos y resumen mensual | 0/TBD | Not started | - |

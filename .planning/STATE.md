@@ -4,13 +4,13 @@ milestone: v1.0
 milestone_name: milestone
 status: executing
 stopped_at: Phase 2 UI-SPEC approved
-last_updated: "2026-10-30T19:50:26.813Z"
+last_updated: "2026-10-30T19:57:36.405Z"
 last_activity: 2026-10-30
 progress:
   total_phases: 7
   completed_phases: 1
   total_plans: 10
-  completed_plans: 7
+  completed_plans: 8
   percent: 14
 ---
 
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-10-29)
 ## Current Position
 
 Phase: 02 (direcci-n-visual-y-sistema-de-dise-o) — EXECUTING
-Plan: 2 of 4
+Plan: 3 of 4
 Status: Ready to execute
 Last activity: 2026-10-30
 
-Progress: [███████░░░] 70%
+Progress: [████████░░] 80%
 
 ## Performance Metrics
 
@@ -57,6 +57,7 @@ Progress: [███████░░░] 70%
 | Phase 01 P05 | 15 min | 3 tasks | 4 files |
 | Phase 01 P06 | 60 min | 3 tasks | 2 files |
 | Phase 02 P01 | 20min | 3 tasks | 11 files |
+| Phase 02 P02 | 15min | 3 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -79,6 +80,8 @@ Recent decisions affecting current work:
 - [Phase 01]: Frontend en Cloudflare Workers static assets (workers.dev) con wrangler.jsonc + deploy --config; listas de settings en Render como JSON
 - [Phase 02-01]: borde claro ajustado #9C8590 -> #98818C para 3:1 sobre papel-2
 - [Phase 02-01]: fallback sólido de color-mix (iOS < 16.2) aceptado y documentado en DESIGN.md
+- [Phase 02]: Phase 2-02: un '.' tipeado al final del input de monto es coma decimal ('1.500' -> '1,50'), documentado en DESIGN.md
+- [Phase 02]: Phase 2-02: montos siempre string; cuentas en BigInt de centavos (lib/money.ts), UMBRAL_CERCA=20
 
 ### Pending Todos
 
@@ -99,6 +102,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-10-30T19:50:16.537Z
+Last session: 2026-10-30T19:57:26.940Z
 Stopped at: Phase 2 UI-SPEC approved
 Resume file: None
