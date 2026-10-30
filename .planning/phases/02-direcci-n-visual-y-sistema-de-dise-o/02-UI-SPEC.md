@@ -333,11 +333,10 @@ Dependencia nueva única: `@fontsource-variable/recursive` (paquete de fuentes d
 
 ## Checker Sign-Off
 - [x] Dimension 1 Copywriting: FLAG (non-blocking: "Cancelar", "Cerrar")
-- [x] Dimension 1 Copywriting: PASS
 - [x] Dimension 2 Visuals: PASS
 - [x] Dimension 3 Color: PASS
 - [x] Dimension 4 Typography: PASS
 - [x] Dimension 5 Spacing: PASS
-- [ ] Dimension 6 Registry Safety: PASS
+- [x] Dimension 6 Registry Safety: PASS
 
 **Approval:** approved 2026-10-30
