@@ -84,7 +84,13 @@ Plans:
   4. La página de muestra se ve bien en un celular real y en la compu.
 
 **Conceptos Python**: ninguno nuevo (fase de frontend). Se introduce lo mínimo de React + TypeScript: componentes como funciones y props tipadas (análogo a interfaces de Java).
-**Plans**: TBD
+**Plans**: 4 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Tokens + Recursive + DESIGN.md con la skill, Button y migración de login/recuperar/home
+- [ ] 02-02-PLAN.md — money.ts (TDD), Monto, RestanteMes, AmountInput y /muestra pública
+- [ ] 02-03-PLAN.md — SegmentedControl, CategoryGrid, BottomSheet y colores de categoría en /muestra
+- [ ] 02-04-PLAN.md — Revisión con capturas + frontend-design, deploy y prueba en celular real
 **UI hint**: yes
 
 ### Phase 3: Categorías y carga rápida de gastos
