@@ -282,3 +282,15 @@ grep -rnE "#[0-9a-fA-F]{3,8}\b|rgb\(" frontend/src --include=*.css | grep -v "st
 ```
 
 Para agregar un color, tamaño o radio: sumarlo en `tokens.css` (claro y oscuro), medir el contraste y documentarlo acá.
+
+## Revisión con capturas
+
+Revisión hecha el 2026-10-30 con la skill `frontend-design` sobre capturas reales del build (`vite preview`) en Edge headless. El modo se forzó con `Emulation.setEmulatedMedia` por CDP, porque los flags `--force-dark-mode` no cambian `prefers-color-scheme` en headless.
+
+- **Anchos y modos:** `/muestra` a 360, 390, 768 y 1280px, en claro y oscuro; `/login` a 390px en claro y oscuro.
+- **Defaults genéricos:** ninguno de los 5 grupos que lista la skill aparece. El fondo es papel durazno, no crema #F4F1EA. El acento es ciruela, no terracota. No hay display serif, eyebrows en mayúsculas, `→`, separadores `·`, monospace para labels ni sombra gris en cada tarjeta.
+- **Jerarquía:** el monto en Recursive Casual es el único elemento llamativo, y lo demás usa dos tamaños tranquilos. Las baldosas de categoría son las únicas tarjetas y su color identifica la categoría, así que el borde es información, no decoración.
+- **Oscuro:** ciruela casi negro, cálido y no gris. El botón primario pasa a rosa claro con texto oscuro y sigue leyéndose como la misma marca.
+- **360px:** no hay scroll horizontal ni cortes. Las líneas largas de "Usaste $ … de $ 200.000" pasan a una segunda línea.
+- **Se dejó a propósito:** el texto de "Guardando…" (`Button` con `loading`) en claro tiene poco contraste. El botón está `disabled` mientras carga y WCAG 1.4.3 exime los componentes inactivos. El cambio de texto ya comunica el estado.
+- **Cambios:** ninguno, no hizo falta tocar tokens ni componentes.
