@@ -46,7 +46,7 @@ def test_hs256_401(client: TestClient) -> None:
 
 
 def test_alg_none_401(client: TestClient) -> None:
-    assert_401(client, jwt.encode(base_claims(), None, algorithm="none"))
+    assert_401(client, jwt.encode(base_claims(), None, algorithm="none"))  # type: ignore[arg-type]
 
 
 def test_other_key_401(client: TestClient) -> None:
