@@ -97,7 +97,7 @@ Plans:
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 02-03-PLAN.md — SegmentedControl, CategoryGrid, BottomSheet y colores de categoría en /muestra
+- [x] 02-03-PLAN.md — SegmentedControl, CategoryGrid, BottomSheet y colores de categoría en /muestra
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
@@ -199,7 +199,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 (el backe
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Fundación end-to-end | 6/6 | Complete   | 2026-10-30 |
-| 2. Dirección visual y sistema de diseño | 2/4 | In Progress|  |
+| 2. Dirección visual y sistema de diseño | 3/4 | In Progress|  |
 | 3. Categorías y carga rápida de gastos | 0/TBD | Not started | - |
 | 4. Cuotas de crédito | 0/TBD | Not started | - |
 | 5. Ingresos y resumen mensual | 0/TBD | Not started | - |
