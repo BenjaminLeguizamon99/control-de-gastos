@@ -1,9 +1,10 @@
 ---
 phase: 01-fundaci-n-end-to-end
 verified: 2026-10-30T16:30:00Z
-status: human_needed
+status: passed
 score: 5/5 roadmap truths verified (SC5 with one minor mypy caveat)
-overrides_applied: 0
+overrides_applied: 1
+override_note: "AUTH-02 PWA-installed persistence deferred to Phase 7 by user (2026-10-30); tracked in 01-HUMAN-UAT.md"
 gaps: []
 human_verification:
   - test: "AUTH-02 en PWA instalada"
