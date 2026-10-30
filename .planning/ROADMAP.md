@@ -62,7 +62,7 @@ Plans:
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
-- [ ] 01-05-PLAN.md — render.yaml, README, notas de aprendizaje, escaneo de secretos y push a GitHub (main)
+- [x] 01-05-PLAN.md — render.yaml, README, notas de aprendizaje, escaneo de secretos y push a GitHub (main)
 
 **Wave 5** *(blocked on Wave 4 completion)*
 
@@ -180,7 +180,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 (el backe
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Fundación end-to-end | 4/6 | In Progress|  |
+| 1. Fundación end-to-end | 5/6 | In Progress|  |
 | 2. Dirección visual y sistema de diseño | 0/TBD | Not started | - |
 | 3. Categorías y carga rápida de gastos | 0/TBD | Not started | - |
 | 4. Cuotas de crédito | 0/TBD | Not started | - |
