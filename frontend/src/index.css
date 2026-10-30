@@ -8,3 +8,24 @@ html {
   background: var(--papel);
   color: var(--tinta);
 }
+
+/* Scroll lock mientras hay una hoja abierta; se libera solo al cerrar (A3, T-02-09) */
+html:has(dialog[open]) {
+  overflow: hidden;
+}
+
+/* Keyframes en vez de @starting-style: soporte parejo en Safari */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes hoja-entra {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  dialog[open] {
+    animation: hoja-entra var(--duracion-hoja) var(--ease-salida);
+  }
+}

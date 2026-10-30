@@ -74,7 +74,7 @@ Familia única: **Recursive Variable**, self-hosted con `@fontsource-variable/re
 | Título | `text-titulo` + `font-casual` | 22px | 600 | 1,2 | 1 |
 | Monto | `text-monto` + `font-casual` | 44px | 600 | 1,0 | 1 |
 
-- Solo 4 tamaños y 2 pesos (400 y 600). El emoji de categoría va a 28px como ícono (excepción declarada).
+- Solo 4 tamaños y 2 pesos (400 y 600). El emoji de categoría va a 28px como ícono (excepción declarada): token `text-emoji` (1,75rem, interlineado 1), solo para el emoji del tile de categoría.
 - `font-casual` (CASL 1) solo en título y monto: es el único lugar donde se gasta la personalidad. MONO siempre en 0.
 - `font-variant-numeric: tabular-nums` global en `html`, para que los montos no bailen (también con la fuente de fallback).
 - Inputs siempre a ≥ 16px para que iOS no haga zoom.
@@ -185,6 +185,61 @@ Patrón "cuánto me queda": label "Te quedan" (o "Te pasaste"), monto grande, ba
 `type="text"` + `inputMode="decimal"`: abre el teclado numérico nativo y permite mostrar los miles en vivo (`1.234,5`). Los separadores de miles los pone la app; el usuario solo tipea dígitos y una coma, con hasta 2 decimales. Al salir del campo se completa a `1.234,50`.
 
 **Decisión del punto:** un `.` tipeado al final se toma como coma decimal (hay teclados que solo traen punto), así que tipear `1.500` queda `1,50`, no mil quinientos. La vista en vivo lo hace evidente apenas se tipea el punto (`1,`). Un `.` en medio del texto se descarta.
+
+### Selección: por qué HTML nativo
+
+`SegmentedControl` y `CategoryGrid` son radios nativos (`<fieldset>` + `<legend>` + `<input type="radio" class="sr-only">` dentro de un `<label>`), y `BottomSheet` es un `<dialog>` con `showModal()`. Así el teclado (Tab entra al grupo, flechas cambian la opción), el foco y los lectores de pantalla vienen del navegador, sin JS propio. El estilo de seleccionado y de foco se cuelga del label con `has-[:checked]:` y `has-[:focus-visible]:`. El `name` de cada grupo sale de `useId()`, así dos instancias no se pisan. El label lleva `relative` para que el `sr-only` (absolute) no genere scroll horizontal.
+
+### `SegmentedControl`
+
+```tsx
+<SegmentedControl legend="Medio de pago" options={[{ value: 'debito', label: 'Débito' }]} value={medio} onChange={setMedio} />
+```
+
+| Prop | Valores |
+|------|---------|
+| `legend` | texto visible del grupo |
+| `options` | `{ value, label }[]` (2 a 4 opciones cortas) |
+| `value` / `onChange` | valor elegido; `onChange` recibe el `value` |
+
+Para elegir una entre pocas opciones excluyentes (Efectivo / Débito / Crédito). Track `bg-papel-2` con borde, alto 48px; el segmento elegido pasa a `bg-papel`, borde y 600 en `tinta`, así la selección se ve por contraste y peso, no solo por color. Transición de color de `--duracion-corta`, apagada con `motion-reduce`.
+
+### `CategoryGrid`
+
+```tsx
+<CategoryGrid categorias={categorias} value={categoriaId} onChange={setCategoriaId} />
+```
+
+| Prop | Valores | Por defecto |
+|------|---------|-------------|
+| `categorias` | `Categoria[]`: `{ id, emoji, nombre, color: ColorCategoria }` (color 1..10) | — |
+| `value` | id elegido o `null` | — |
+| `onChange` | recibe el id | — |
+| `legend` | texto del grupo | `Categoría` |
+
+Grilla de 3 columnas (4 desde 640px), tiles de 80px con emoji (`text-emoji`, `aria-hidden`) y nombre (`line-clamp-2`, el nombre completo en `title`). Fondo `bg-cat-N/15` y `active:bg-cat-N/25`. La elegida tiene borde 2px `tinta` y un ✓ arriba a la derecha (D-11): no depende solo del color.
+
+**Mapa literal de colores:** las clases van escritas enteras en un `Record<ColorCategoria, string>` (`'bg-cat-1/15 active:bg-cat-1/25'` … `'bg-cat-10/15 …'`). Tailwind solo genera las clases que encuentra completas en el código, así que está prohibido armarlas con template literal sobre el número (`bg-cat-${n}`). Lo mismo para las muestras sólidas de `/muestra`.
+
+### `BottomSheet`
+
+```tsx
+<BottomSheet open={abierta} onClose={() => setAbierta(false)} title="¿Borrar este gasto?">…</BottomSheet>
+```
+
+| Prop | Valores |
+|------|---------|
+| `open` | controla la hoja; un `useEffect` llama a `showModal()` / `close()` |
+| `onClose` | se llama al cerrar por cualquier vía |
+| `title` | título visible; es el `aria-labelledby` del dialog |
+| `children` | contenido |
+
+Para elegir algo sin salir de la pantalla (categorías) y para confirmar acciones destructivas ("¿Borrar este gasto?" con "Borrar gasto" en `peligro` y "Cancelar" en `secundario`). En el celular se pega abajo con esquinas superiores `rounded-hoja`; desde 640px queda centrada, de 480px y con las 4 esquinas redondeadas. Alto máximo 85dvh con scroll interno y padding inferior que respeta `safe-area-inset-bottom`.
+
+- **Cierre:** botón "Cerrar", Esc (evento `close` nativo) o toque en el fondo (`e.target === e.currentTarget`; el contenido va en un div interno para que el clic adentro no cuente). No se usa `closedby` (soporte desparejo). Sin handle ni arrastre. El foco vuelve al botón que la abrió.
+- **Scroll lock:** `html:has(dialog[open]) { overflow: hidden }` en `index.css`; depende solo de que haya un dialog abierto, así que se libera solo al cerrar.
+- **Movimiento:** entra desde abajo con `@keyframes hoja-entra` (`--duracion-hoja`, `--ease-salida`), solo dentro de `prefers-reduced-motion: no-preference`. Keyframes en vez de `@starting-style` por soporte en Safari.
+- **Sombra:** `shadow-hoja` en claro; en oscuro la sombra es `none` y se ve el borde superior `linea`.
 
 ## Estados del presupuesto
 

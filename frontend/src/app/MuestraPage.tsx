@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { AmountInput } from '../components/ui/AmountInput'
+import { BottomSheet } from '../components/ui/BottomSheet'
 import { Button } from '../components/ui/Button'
 import { CategoryGrid, type Categoria, type ColorCategoria } from '../components/ui/CategoryGrid'
 import { Monto } from '../components/ui/Monto'
@@ -57,6 +58,8 @@ export function MuestraPage() {
   const [monto, setMonto] = useState('')
   const [medio, setMedio] = useState('debito')
   const [categoria, setCategoria] = useState<string | null>(null)
+  const [hoja, setHoja] = useState<'categoria' | 'borrar' | null>(null)
+  const cerrar = () => setHoja(null)
 
   return (
     <main className="mx-auto min-h-dvh max-w-120 px-4 pb-16 sm:px-6">
@@ -111,6 +114,33 @@ export function MuestraPage() {
       <section className="mt-12">
         <h2 className="mb-4 text-titulo font-casual">Categorías</h2>
         <CategoryGrid categorias={CATEGORIAS} value={categoria} onChange={setCategoria} />
+      </section>
+
+      <section className="mt-12">
+        <h2 className="mb-4 text-titulo font-casual">Hoja inferior</h2>
+        <div className="flex flex-col gap-4">
+          <Button variant="secundario" onClick={() => setHoja('categoria')}>
+            Elegir categoría
+          </Button>
+          <Button variant="peligro" onClick={() => setHoja('borrar')}>
+            Borrar gasto
+          </Button>
+        </div>
+        <BottomSheet open={hoja === 'categoria'} onClose={cerrar} title="Elegí una categoría">
+          <CategoryGrid categorias={CATEGORIAS} value={categoria} onChange={setCategoria} />
+        </BottomSheet>
+        {/* Sin datos: los dos botones solo cierran la hoja (T-02-10) */}
+        <BottomSheet open={hoja === 'borrar'} onClose={cerrar} title="¿Borrar este gasto?">
+          <p className="text-cuerpo text-tinta-2">Se borra para siempre. No se puede deshacer.</p>
+          <div className="mt-6 flex flex-col gap-4">
+            <Button variant="peligro" fullWidth onClick={cerrar}>
+              Borrar gasto
+            </Button>
+            <Button variant="secundario" fullWidth onClick={cerrar}>
+              Cancelar
+            </Button>
+          </div>
+        </BottomSheet>
       </section>
 
       <section className="mt-12">
