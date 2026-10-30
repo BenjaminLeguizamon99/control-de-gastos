@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { authErrorMessage, GENERIC_ERROR, NETWORK_ERROR } from './authErrors'
+import { AUTH_NETWORK_ERROR, authErrorMessage, GENERIC_ERROR, NETWORK_ERROR } from './authErrors'
 
 describe('authErrorMessage', () => {
   it.each([
@@ -19,8 +19,9 @@ describe('authErrorMessage', () => {
     )
   })
 
-  it('no code (no response) falls back to NETWORK_ERROR', () => {
-    expect(authErrorMessage(undefined)).toBe(NETWORK_ERROR)
+  it('no code (no response) gets AUTH_NETWORK_ERROR, without "Reintentar"', () => {
+    expect(authErrorMessage(undefined)).toBe(AUTH_NETWORK_ERROR)
+    expect(AUTH_NETWORK_ERROR).not.toContain('Reintentar')
   })
 
   it.each([['email_not_confirmed'], ['toString']])('unmapped code %s gets GENERIC_ERROR', (code) => {

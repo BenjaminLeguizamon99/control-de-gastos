@@ -1,6 +1,10 @@
 export const NETWORK_ERROR =
   'No pudimos conectar con el servidor. Revisá tu conexión y tocá "Reintentar".'
 
+// Login y recuperación no tienen botón "Reintentar": se reenvía el mismo formulario
+export const AUTH_NETWORK_ERROR =
+  'No pudimos conectar con el servidor. Revisá tu conexión e intentá de nuevo.'
+
 const TOO_MANY = 'Demasiados intentos. Esperá unos minutos y volvé a probar.'
 
 // Copy de UI-SPEC (es-AR). Claves = error.code de supabase-js.
@@ -17,7 +21,7 @@ export const GENERIC_ERROR = 'Algo salió mal. Intentá de nuevo en unos minutos
 
 export function authErrorMessage(code: string | undefined): string {
   // Sin code = no hubo respuesta del servidor; con code no mapeado = error real de Supabase
-  if (!code) return NETWORK_ERROR
+  if (!code) return AUTH_NETWORK_ERROR
   // Object.hasOwn evita que "toString" & co. devuelvan funciones del prototipo
   return Object.hasOwn(MESSAGES, code) ? MESSAGES[code] : GENERIC_ERROR
 }
