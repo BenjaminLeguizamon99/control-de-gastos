@@ -30,6 +30,9 @@ def get_current_user_id(
             options={"require": ["exp", "sub", "aud", "iss"]},
         )
         user_id = UUID(claims["sub"])
+    except jwt.PyJWKClientConnectionError:
+        # JWKS caido: no es culpa del token, que el cliente reintente
+        raise HTTPException(503, "Auth provider unavailable") from None
     except (jwt.PyJWTError, ValueError):
         raise HTTPException(401, "Invalid token", headers={"WWW-Authenticate": "Bearer"}) from None
     if user_id not in s.allowed_user_ids:

@@ -3,6 +3,8 @@ import time
 import jwt
 from fastapi.testclient import TestClient
 
+from app.auth import get_jwks_client
+from app.main import app
 from tests.conftest import OTHER_KEY, OUTSIDER, USER_A, auth, make_token
 
 
@@ -70,3 +72,14 @@ def test_valid_returns_user_id(client: TestClient) -> None:
     r = client.get("/me", headers=auth(make_token(USER_A)))
     assert r.status_code == 200
     assert r.json() == {"user_id": USER_A}
+
+
+class DownJWKS:
+    def get_signing_key_from_jwt(self, token: str) -> jwt.PyJWK:
+        raise jwt.PyJWKClientConnectionError("JWKS unreachable")
+
+
+def test_jwks_unreachable_503(client: TestClient) -> None:
+    app.dependency_overrides[get_jwks_client] = DownJWKS
+    r = client.get("/me", headers=auth(make_token(USER_A)))
+    assert r.status_code == 503

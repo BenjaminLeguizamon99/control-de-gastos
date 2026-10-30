@@ -10,7 +10,8 @@ export function HomePage() {
     queryFn: () => api<{ user_id: string }>('/me'),
   })
 
-  const denied = error instanceof ApiError && (error.status === 401 || error.status === 403)
+  // Solo 403 es falta de acceso; un 401 ya se reintentó con el token refrescado en api()
+  const denied = error instanceof ApiError && error.status === 403
 
   return (
     <main className="mx-auto mt-8 max-w-sm px-4 sm:mt-12">
