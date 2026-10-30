@@ -1,0 +1,127 @@
+/* Única fuente de tokens. Ver DESIGN.md antes de agregar o cambiar un valor. */
+
+:root {
+  color-scheme: light dark;
+
+  --papel: #FFF6EF;
+  --papel-2: #F6E9DE;
+  --linea: #EAD9CB;
+  --borde: #98818C;
+  --tinta: #2E1F27;
+  --tinta-2: #6E5A63;
+  --acento: #7A2E63;
+  --acento-fuerte: #64224F;
+  --sobre-acento: #FFFFFF;
+  --alerta: #9A5B00;
+  --peligro: #B3261E;
+
+  --cat-1: #C2412D;
+  --cat-2: #B85A06;
+  --cat-3: #8F6A00;
+  --cat-4: #6A7419;
+  --cat-5: #2F7A6B;
+  --cat-6: #4F6B8A;
+  --cat-7: #6B5BB5;
+  --cat-8: #7E3FA0;
+  --cat-9: #C23A6E;
+  --cat-10: #8A5A3C;
+
+  --velo: rgb(46 31 39 / 0.4);
+  --sombra-hoja: 0 -8px 24px rgb(46 31 39 / 0.16);
+
+  --duracion-corta: 150ms;
+  --duracion-hoja: 240ms;
+  --ease-salida: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* El umbral de "te queda poco" (20%) no es CSS: vive como constante en lib/money.ts. */
+}
+
+/* Sigue el tema del sistema, sin selector en la app (D-05, D-06). */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --papel: #221A1F;
+    --papel-2: #2F242B;
+    --linea: #3D3038;
+    --borde: #8A7681;
+    --tinta: #F6EAE2;
+    --tinta-2: #C8B4BC;
+    --acento: #E8A3CF;
+    --acento-fuerte: #F2BBDD;
+    --sobre-acento: #221A1F;
+    --alerta: #F2B54A;
+    --peligro: #FF8A7A;
+
+    --cat-1: #F08A73;
+    --cat-2: #F2A25C;
+    --cat-3: #E2C25A;
+    --cat-4: #B8C46A;
+    --cat-5: #6FC2AE;
+    --cat-6: #95B0D0;
+    --cat-7: #A99CF0;
+    --cat-8: #C594E8;
+    --cat-9: #F28DB2;
+    --cat-10: #D6A07E;
+
+    --velo: rgb(0 0 0 / 0.6);
+    --sombra-hoja: none;
+  }
+}
+
+/* El reset borra los defaults de Tailwind: text-red-600 o rounded-lg no generan CSS. */
+@theme {
+  --color-*: initial;
+  --text-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+  --font-*: initial;
+
+  --font-sans: "Recursive Variable", system-ui, sans-serif;
+  --font-casual: "Recursive Variable", system-ui, sans-serif;
+  --font-casual--font-variation-settings: "CASL" 1;
+
+  --text-cuerpo: 1rem;
+  --text-cuerpo--line-height: 1.5;
+  --text-etiqueta: 0.875rem;
+  --text-etiqueta--line-height: 1.4;
+  --text-etiqueta--font-weight: 600;
+  --text-titulo: 1.375rem;
+  --text-titulo--line-height: 1.2;
+  --text-titulo--font-weight: 600;
+  --text-monto: 2.75rem;
+  --text-monto--line-height: 1;
+  --text-monto--font-weight: 600;
+
+  --radius-segmento: 8px;
+  --radius-control: 12px;
+  --radius-tile: 16px;
+  --radius-hoja: 24px;
+  --radius-full: 9999px;
+}
+
+/* inline: las utilidades leen la var en runtime, así el cambio claro/oscuro no necesita recargar. */
+@theme inline {
+  --color-papel: var(--papel);
+  --color-papel-2: var(--papel-2);
+  --color-linea: var(--linea);
+  --color-borde: var(--borde);
+  --color-tinta: var(--tinta);
+  --color-tinta-2: var(--tinta-2);
+  --color-acento: var(--acento);
+  --color-acento-fuerte: var(--acento-fuerte);
+  --color-sobre-acento: var(--sobre-acento);
+  --color-alerta: var(--alerta);
+  --color-peligro: var(--peligro);
+  --color-velo: var(--velo);
+  --color-cat-1: var(--cat-1);
+  --color-cat-2: var(--cat-2);
+  --color-cat-3: var(--cat-3);
+  --color-cat-4: var(--cat-4);
+  --color-cat-5: var(--cat-5);
+  --color-cat-6: var(--cat-6);
+  --color-cat-7: var(--cat-7);
+  --color-cat-8: var(--cat-8);
+  --color-cat-9: var(--cat-9);
+  --color-cat-10: var(--cat-10);
+
+  --shadow-hoja: var(--sombra-hoja);
+}

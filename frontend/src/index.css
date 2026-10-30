@@ -1,5 +1,10 @@
 @import "tailwindcss";
+@import "@fontsource-variable/recursive/full.css";
+@import "./styles/tokens.css";
 
+/* La familia sale de --font-sans (preflight la aplica a html). */
 html {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-variant-numeric: tabular-nums;
+  background: var(--papel);
+  color: var(--tinta);
 }
