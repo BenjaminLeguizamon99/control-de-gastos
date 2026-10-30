@@ -42,4 +42,18 @@ describe('api', () => {
     await expect(api('/me')).rejects.toMatchObject({ status: 401 })
     expect(fetchMock).toHaveBeenCalledTimes(2)
   })
+
+  it('strips a trailing slash from VITE_API_URL', async () => {
+    vi.stubEnv('VITE_API_URL', 'https://api.test/')
+    fetchMock.mockResolvedValueOnce(Response.json({}))
+    const { api } = await import('./client')
+
+    await api('/me')
+    expect(fetchMock.mock.calls[0][0]).toBe('https://api.test/me')
+  })
+
+  it('fails at load when VITE_API_URL is missing', async () => {
+    vi.stubEnv('VITE_API_URL', '')
+    await expect(import('./client')).rejects.toThrow('Falta VITE_API_URL')
+  })
 })

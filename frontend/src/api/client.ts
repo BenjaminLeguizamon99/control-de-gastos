@@ -1,5 +1,9 @@
 import { supabase } from '../lib/supabase'
 
+// Sin esto, "undefined/me" cae en el fallback SPA (index.html con 200) y parece un error de red
+const API_URL = import.meta.env.VITE_API_URL?.replace(/\/+$/, '')
+if (!API_URL) throw new Error('Falta VITE_API_URL (ver frontend/.env.example)')
+
 export class ApiError extends Error {
   status: number
   constructor(status: number) {
@@ -9,7 +13,7 @@ export class ApiError extends Error {
 }
 
 function request(path: string, token: string | undefined): Promise<Response> {
-  return fetch(`${import.meta.env.VITE_API_URL}${path}`, {
+  return fetch(`${API_URL}${path}`, {
     headers: token ? { Authorization: `Bearer ${token}` } : {},
   })
 }
