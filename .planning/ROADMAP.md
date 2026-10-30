@@ -87,10 +87,22 @@ Plans:
 **Plans**: 4 plans
 
 Plans:
+**Wave 1**
+
 - [ ] 02-01-PLAN.md — Tokens + Recursive + DESIGN.md con la skill, Button y migración de login/recuperar/home
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
 - [ ] 02-02-PLAN.md — money.ts (TDD), Monto, RestanteMes, AmountInput y /muestra pública
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
 - [ ] 02-03-PLAN.md — SegmentedControl, CategoryGrid, BottomSheet y colores de categoría en /muestra
+
+**Wave 4** *(blocked on Wave 3 completion)*
+
 - [ ] 02-04-PLAN.md — Revisión con capturas + frontend-design, deploy y prueba en celular real
+
 **UI hint**: yes
 
 ### Phase 3: Categorías y carga rápida de gastos
