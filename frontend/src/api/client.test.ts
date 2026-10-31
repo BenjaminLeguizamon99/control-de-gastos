@@ -35,6 +35,30 @@ describe('api', () => {
     expect(fetchMock.mock.calls[1][1].headers).toEqual({ Authorization: 'Bearer new' })
   })
 
+  it('sends method, JSON body and Content-Type on writes', async () => {
+    fetchMock.mockResolvedValueOnce(Response.json({ ok: true }))
+    const { api } = await import('./client')
+
+    await api('/expenses', { method: 'POST', body: { a: 1 } })
+    const init = fetchMock.mock.calls[0][1]
+    expect(init.method).toBe('POST')
+    expect(init.body).toBe('{"a":1}')
+    expect(init.headers).toEqual({ Authorization: 'Bearer old', 'Content-Type': 'application/json' })
+  })
+
+  it('retries a write after 401 with the same method and body', async () => {
+    fetchMock
+      .mockResolvedValueOnce(new Response(null, { status: 401 }))
+      .mockResolvedValueOnce(Response.json({ ok: true }))
+    const { api } = await import('./client')
+
+    await api('/categories/1', { method: 'PUT', body: { name: 'x' } })
+    const retry = fetchMock.mock.calls[1][1]
+    expect(retry.method).toBe('PUT')
+    expect(retry.body).toBe('{"name":"x"}')
+    expect(retry.headers).toEqual({ Authorization: 'Bearer new', 'Content-Type': 'application/json' })
+  })
+
   it('throws 401 when the retry also fails', async () => {
     fetchMock.mockImplementation(async () => new Response(null, { status: 401 }))
     const { api } = await import('./client')
