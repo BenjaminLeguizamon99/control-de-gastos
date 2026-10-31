@@ -7,6 +7,7 @@ export interface Categoria {
   emoji: string
   nombre: string
   color: ColorCategoria
+  esOtros?: boolean
 }
 
 // Clases enteras: Tailwind solo genera las que encuentra completas en el código
