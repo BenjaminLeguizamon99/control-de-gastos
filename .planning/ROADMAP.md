@@ -20,7 +20,7 @@ Vamos de un directorio vacío a una PWA instalable donde cargo un gasto desde el
 - Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
 
 - [x] **Phase 1: Fundación end-to-end** - Esqueleto que funciona de punta a punta: login, `/me` protegido por JWT, DB con RLS, deploy temprano (completed 2026-10-30)
-- [ ] **Phase 2: Dirección visual y sistema de diseño** - Identidad visual propia con `frontend-design`, `DESIGN.md`, `tokens.css` y componentes base
+- [x] **Phase 2: Dirección visual y sistema de diseño** - Identidad visual propia con `frontend-design`, `DESIGN.md`, `tokens.css` y componentes base (completed 2026-10-31)
 - [ ] **Phase 3: Categorías y carga rápida de gastos** - Categorías base editables y un formulario de gasto rápido en el celular (1 cuota)
 - [ ] **Phase 4: Cuotas de crédito** - Compras en N cuotas con preview y mes de la primera cuota elegible
 - [ ] **Phase 5: Ingresos y resumen mensual** - "Te quedan $X", totales por categoría, gráfico, lista por día y navegación de meses
@@ -101,7 +101,7 @@ Plans:
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
-- [ ] 02-04-PLAN.md — Revisión con capturas + frontend-design, deploy y prueba en celular real
+- [x] 02-04-PLAN.md — Revisión con capturas + frontend-design, deploy y prueba en celular real
 
 **UI hint**: yes
 
@@ -199,7 +199,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 (el backe
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Fundación end-to-end | 6/6 | Complete   | 2026-10-30 |
-| 2. Dirección visual y sistema de diseño | 3/4 | In Progress|  |
+| 2. Dirección visual y sistema de diseño | 4/4 | Complete   | 2026-10-31 |
 | 3. Categorías y carga rápida de gastos | 0/TBD | Not started | - |
 | 4. Cuotas de crédito | 0/TBD | Not started | - |
 | 5. Ingresos y resumen mensual | 0/TBD | Not started | - |
