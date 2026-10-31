@@ -81,6 +81,10 @@ describe('aCentavos / deCentavos', () => {
     expect(aCentavos(value)).toBe(expected)
   })
 
+  it('lo tipeado "1.234,56" llega a 123456 centavos (GAS-09)', () => {
+    expect(aCentavos(parseMontoInput('1.234,56').value)).toBe(123456n)
+  })
+
   it.each([
     [17499950n, '174999.50'],
     [8000000n, '80000'],
