@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { AmountInput } from '../components/ui/AmountInput'
 import { BottomSheet } from '../components/ui/BottomSheet'
 import { Button } from '../components/ui/Button'
-import { CategoryGrid, type Categoria, type ColorCategoria } from '../components/ui/CategoryGrid'
+import { CategoryGrid, NOMBRES_COLOR, SOLIDO, type Categoria } from '../components/ui/CategoryGrid'
 import { Monto } from '../components/ui/Monto'
 import { RestanteMes } from '../components/ui/RestanteMes'
 import { SegmentedControl } from '../components/ui/SegmentedControl'
@@ -24,33 +24,6 @@ const MEDIOS = [
   { value: 'efectivo', label: 'Efectivo' },
   { value: 'debito', label: 'Débito' },
   { value: 'credito', label: 'Crédito' },
-]
-
-// Clases enteras: Tailwind solo genera las que encuentra completas en el código
-const SOLIDO: Record<ColorCategoria, string> = {
-  1: 'bg-cat-1',
-  2: 'bg-cat-2',
-  3: 'bg-cat-3',
-  4: 'bg-cat-4',
-  5: 'bg-cat-5',
-  6: 'bg-cat-6',
-  7: 'bg-cat-7',
-  8: 'bg-cat-8',
-  9: 'bg-cat-9',
-  10: 'bg-cat-10',
-}
-
-const NOMBRES_COLOR: [ColorCategoria, string][] = [
-  [1, 'Tomate'],
-  [2, 'Mandarina'],
-  [3, 'Mostaza'],
-  [4, 'Oliva'],
-  [5, 'Eucalipto'],
-  [6, 'Pizarra'],
-  [7, 'Lavanda'],
-  [8, 'Uva'],
-  [9, 'Rosa'],
-  [10, 'Canela'],
 ]
 
 // Solo datos fijos: es pública y no puede tocar la API ni la sesión (T-02-04)

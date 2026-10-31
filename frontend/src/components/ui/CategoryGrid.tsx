@@ -24,17 +24,45 @@ export const FONDO: Record<ColorCategoria, string> = {
   10: 'bg-cat-10/15 active:bg-cat-10/25',
 }
 
+export const SOLIDO: Record<ColorCategoria, string> = {
+  1: 'bg-cat-1',
+  2: 'bg-cat-2',
+  3: 'bg-cat-3',
+  4: 'bg-cat-4',
+  5: 'bg-cat-5',
+  6: 'bg-cat-6',
+  7: 'bg-cat-7',
+  8: 'bg-cat-8',
+  9: 'bg-cat-9',
+  10: 'bg-cat-10',
+}
+
+export const NOMBRES_COLOR: [ColorCategoria, string][] = [
+  [1, 'Tomate'],
+  [2, 'Mandarina'],
+  [3, 'Mostaza'],
+  [4, 'Oliva'],
+  [5, 'Eucalipto'],
+  [6, 'Pizarra'],
+  [7, 'Lavanda'],
+  [8, 'Uva'],
+  [9, 'Rosa'],
+  [10, 'Canela'],
+]
+
 // La selección no depende solo del color: borde de tinta 2px + ✓ (D-11, D-12)
 export function CategoryGrid({
   categorias,
   value,
   onChange,
   legend = 'Categoría',
+  onNueva,
 }: {
   categorias: Categoria[]
   value: string | null
   onChange: (id: string) => void
   legend?: string
+  onNueva?: () => void
 }) {
   const name = useId()
   return (
@@ -66,6 +94,19 @@ export function CategoryGrid({
             )}
           </label>
         ))}
+        {onNueva && (
+          <button
+            type="button"
+            aria-label="Nueva categoría"
+            onClick={onNueva}
+            className="flex min-h-20 flex-col items-center justify-center gap-1 rounded-tile border border-dashed border-borde bg-transparent p-2 active:bg-papel-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-acento"
+          >
+            <span aria-hidden="true" className="text-emoji text-tinta-2">
+              ＋
+            </span>
+            <span className="text-etiqueta text-tinta">Nueva</span>
+          </button>
+        )}
       </div>
     </fieldset>
   )
