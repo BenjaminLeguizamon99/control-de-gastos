@@ -135,7 +135,7 @@ Plans:
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 03-05-PLAN.md — Sheet de categoría, /categorias, tile "＋ Nueva" y link en el home
+- [x] 03-05-PLAN.md — Sheet de categoría, /categorias, tile "＋ Nueva" y link en el home
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
@@ -219,7 +219,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 (el backe
 |-------|----------------|--------|-----------|
 | 1. Fundación end-to-end | 6/6 | Complete   | 2026-10-30 |
 | 2. Dirección visual y sistema de diseño | 4/4 | Complete   | 2026-10-31 |
-| 3. Categorías y carga rápida de gastos | 4/6 | In Progress|  |
+| 3. Categorías y carga rápida de gastos | 5/6 | In Progress|  |
 | 4. Cuotas de crédito | 0/TBD | Not started | - |
 | 5. Ingresos y resumen mensual | 0/TBD | Not started | - |
 | 6. Edición, filtros y comparaciones | 0/TBD | Not started | - |
