@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
+import { Link } from 'react-router'
 import { ApiError, api } from '../api/client'
 import { Button } from '../components/ui/Button'
 import { useAuth } from '../features/auth/AuthProvider'
@@ -15,7 +16,7 @@ export function HomePage() {
   const denied = error instanceof ApiError && error.status === 403
 
   return (
-    <main className="mx-auto mt-8 max-w-sm px-4 sm:mt-12">
+    <main className="mx-auto mt-8 max-w-sm px-4 pb-24 sm:mt-12">
       <h1 className="mb-6 text-titulo font-casual">Sesión iniciada</h1>
       <p>Entraste como {session?.user.email}.</p>
       {isPending && <p className="mt-4">Cargando…</p>}
@@ -35,6 +36,12 @@ export function HomePage() {
           </Button>
         </div>
       )}
+      <Link
+        to="/categorias"
+        className="mt-4 inline-flex min-h-11 items-center text-cuerpo text-acento focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-acento"
+      >
+        Editar categorías
+      </Link>
     </main>
   )
 }
