@@ -23,6 +23,11 @@ EXPECTED_COLORS = {
 }
 
 
+@pytest.fixture(autouse=True)
+def _clean(db_session: Session) -> None:
+    """db_session hace TRUNCATE al final: asi ningun test de este archivo deja filas."""
+
+
 def count_categories(db_session: Session) -> int | None:
     return db_session.scalar(select(func.count()).select_from(Category))
 
