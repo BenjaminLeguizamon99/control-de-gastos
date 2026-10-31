@@ -1,5 +1,5 @@
 import { useQueryClient } from '@tanstack/react-query'
-import { Navigate, Outlet, useNavigate } from 'react-router'
+import { Link, Navigate, Outlet, useMatch, useNavigate } from 'react-router'
 import { Button } from '../components/ui/Button'
 import { useAuth } from '../features/auth/AuthProvider'
 import { supabase } from '../lib/supabase'
@@ -8,6 +8,8 @@ export function ProtectedLayout() {
   const { session } = useAuth()
   const queryClient = useQueryClient()
   const navigate = useNavigate()
+  // Hook antes del return temprano; el FAB no va dentro del propio formulario (D-02)
+  const enForm = useMatch('/gasto/nuevo')
 
   if (!session) return <Navigate to="/login" replace />
 
@@ -27,6 +29,15 @@ export function ProtectedLayout() {
         </Button>
       </header>
       <Outlet />
+      {!enForm && (
+        <Link
+          to="/gasto/nuevo"
+          aria-label="Cargar gasto"
+          className="fixed right-4 bottom-[calc(1rem+env(safe-area-inset-bottom))] inline-flex size-14 items-center justify-center rounded-full bg-acento text-sobre-acento text-titulo font-casual hover:bg-acento-fuerte active:bg-acento-fuerte focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-acento"
+        >
+          +
+        </Link>
+      )}
     </div>
   )
 }

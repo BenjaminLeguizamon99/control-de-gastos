@@ -23,7 +23,7 @@ export function SegmentedControl({
           // relative: contiene el sr-only (absolute) y evita scroll horizontal
           <label
             key={o.value}
-            className="relative flex flex-1 items-center justify-center rounded-segmento border border-transparent text-cuerpo text-tinta-2 transition-colors duration-(--duracion-corta) ease-(--ease-salida) motion-reduce:transition-none has-[:checked]:border-borde has-[:checked]:bg-papel has-[:checked]:font-semibold has-[:checked]:text-tinta has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-acento"
+            className="relative flex flex-1 items-center justify-center rounded-segmento text-center border border-transparent text-cuerpo text-tinta-2 transition-colors duration-(--duracion-corta) ease-(--ease-salida) motion-reduce:transition-none has-[:checked]:border-borde has-[:checked]:bg-papel has-[:checked]:font-semibold has-[:checked]:text-tinta has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-acento"
           >
             <input
               type="radio"

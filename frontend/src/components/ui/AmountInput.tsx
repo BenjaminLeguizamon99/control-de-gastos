@@ -7,12 +7,14 @@ export function AmountInput({
   onChange,
   error,
   help,
+  autoFocus,
 }: {
   label?: string
   value: string
   onChange: (value: string) => void
   error?: string
   help?: string
+  autoFocus?: boolean
 }) {
   const id = useId()
   const [display, setDisplay] = useState(() => formatMontoEditable(value))
@@ -33,6 +35,7 @@ export function AmountInput({
         {/* Texto + inputMode: el input numérico acepta "e" y no deja mostrar miles en vivo (D-10) */}
         <input
           id={id}
+          autoFocus={autoFocus}
           type="text"
           inputMode="decimal"
           autoComplete="off"
