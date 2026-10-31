@@ -130,8 +130,8 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 03-03-PLAN.md — FAB "+", /gasto/nuevo con validación, guardado idempotente y toast
-- [ ] 03-04-PLAN.md — POST/PUT /categories con 409 por la DB y emoji validado (checkpoint uv add emoji) + docs fase-03
+- [x] 03-03-PLAN.md — FAB "+", /gasto/nuevo con validación, guardado idempotente y toast
+- [x] 03-04-PLAN.md — POST/PUT /categories con 409 por la DB y emoji validado (checkpoint uv add emoji) + docs fase-03
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
@@ -219,7 +219,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 (el backe
 |-------|----------------|--------|-----------|
 | 1. Fundación end-to-end | 6/6 | Complete   | 2026-10-30 |
 | 2. Dirección visual y sistema de diseño | 4/4 | Complete   | 2026-10-31 |
-| 3. Categorías y carga rápida de gastos | 2/6 | In Progress|  |
+| 3. Categorías y carga rápida de gastos | 4/6 | In Progress|  |
 | 4. Cuotas de crédito | 0/TBD | Not started | - |
 | 5. Ingresos y resumen mensual | 0/TBD | Not started | - |
 | 6. Edición, filtros y comparaciones | 0/TBD | Not started | - |
