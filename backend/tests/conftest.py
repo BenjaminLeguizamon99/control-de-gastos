@@ -85,6 +85,6 @@ def db_session() -> Iterator[Session]:
         yield session
     finally:
         session.rollback()
-        session.execute(text("TRUNCATE probes"))
+        session.execute(text("TRUNCATE probes, installments, expenses, categories"))
         session.commit()
         session.close()
