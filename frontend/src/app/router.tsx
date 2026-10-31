@@ -3,6 +3,7 @@ import { createBrowserRouter, Navigate } from 'react-router'
 import { useAuth } from '../features/auth/AuthProvider'
 import { LoginPage } from '../features/auth/LoginPage'
 import { RecoverPage } from '../features/auth/RecoverPage'
+import { CategoriasPage } from '../features/categories/CategoriasPage'
 import { NuevoGastoPage } from '../features/expenses/NuevoGastoPage'
 import { HomePage } from './HomePage'
 import { MuestraPage } from './MuestraPage'
@@ -24,6 +25,7 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: 'gasto/nuevo', element: <NuevoGastoPage /> },
+      { path: 'categorias', element: <CategoriasPage /> },
     ],
   },
   // Pública y sin guard para abrirla en el celular desde el deploy sin login (SC4); solo datos fijos

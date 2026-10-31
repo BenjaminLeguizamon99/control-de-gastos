@@ -12,6 +12,7 @@ import { CATEGORIA_FALTA } from '../../lib/categorias'
 import { ayer, hoyART } from '../../lib/fecha'
 import { MONTO_DECIMALES, MONTO_VACIO, aCentavos } from '../../lib/money'
 import { NETWORK_ERROR } from '../auth/authErrors'
+import { CategoriaSheet } from '../categories/CategoriaSheet'
 import { useCategorias } from '../categories/useCategorias'
 
 type Medio = ExpenseCreate['payment_method']
@@ -64,6 +65,8 @@ export function NuevoGastoPage() {
   const [errores, setErrores] = useState<{ monto?: string; categoria?: string; fecha?: string }>({})
   const [errorGuardar, setErrorGuardar] = useState(false)
   const [toast, setToast] = useState<Toast | null>(null)
+  const [sheetAbierto, setSheetAbierto] = useState(false)
+  const [sheetKey, setSheetKey] = useState(0)
 
   // Mismo UUID en los reintentos: el POST es idempotente y no duplica (GAS-09)
   const draftId = useRef(crypto.randomUUID())
@@ -184,6 +187,10 @@ export function NuevoGastoPage() {
                 setCategoria(id)
                 setErrores((x) => ({ ...x, categoria: undefined }))
               }}
+              onNueva={() => {
+                setSheetKey((k) => k + 1)
+                setSheetAbierto(true)
+              }}
             />
           ) : (
             <fieldset>
@@ -276,6 +283,19 @@ export function NuevoGastoPage() {
           </Button>
         </div>
       </form>
+
+      {/* Fuera del form: su propio submit no debe disparar "Guardar gasto"; el resto del gasto no se toca (D-11) */}
+      <CategoriaSheet
+        key={sheetKey}
+        open={sheetAbierto}
+        onClose={() => setSheetAbierto(false)}
+        categorias={categorias.data ?? []}
+        editando={null}
+        onGuardada={(c) => {
+          setCategoria(c.id)
+          setErrores((x) => ({ ...x, categoria: undefined }))
+        }}
+      />
     </main>
   )
 }
