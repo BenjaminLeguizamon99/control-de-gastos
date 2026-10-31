@@ -3,6 +3,7 @@ import { createBrowserRouter, Navigate } from 'react-router'
 import { useAuth } from '../features/auth/AuthProvider'
 import { LoginPage } from '../features/auth/LoginPage'
 import { RecoverPage } from '../features/auth/RecoverPage'
+import { NuevoGastoPage } from '../features/expenses/NuevoGastoPage'
 import { HomePage } from './HomePage'
 import { MuestraPage } from './MuestraPage'
 import { ProtectedLayout } from './ProtectedLayout'
@@ -17,7 +18,14 @@ function GuestOnly({ children }: { children: ReactNode }) {
 export const router = createBrowserRouter([
   { path: '/login', element: <GuestOnly><LoginPage /></GuestOnly> },
   { path: '/recuperar', element: <RecoverPage /> },
-  { path: '/', element: <ProtectedLayout />, children: [{ index: true, element: <HomePage /> }] },
+  {
+    path: '/',
+    element: <ProtectedLayout />,
+    children: [
+      { index: true, element: <HomePage /> },
+      { path: 'gasto/nuevo', element: <NuevoGastoPage /> },
+    ],
+  },
   // Pública y sin guard para abrirla en el celular desde el deploy sin login (SC4); solo datos fijos
   { path: '/muestra', element: <MuestraPage /> },
   { path: '*', element: <Navigate to="/" replace /> },

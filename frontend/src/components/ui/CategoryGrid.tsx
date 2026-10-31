@@ -11,7 +11,7 @@ export interface Categoria {
 }
 
 // Clases enteras: Tailwind solo genera las que encuentra completas en el código
-const FONDO: Record<ColorCategoria, string> = {
+export const FONDO: Record<ColorCategoria, string> = {
   1: 'bg-cat-1/15 active:bg-cat-1/25',
   2: 'bg-cat-2/15 active:bg-cat-2/25',
   3: 'bg-cat-3/15 active:bg-cat-3/25',
