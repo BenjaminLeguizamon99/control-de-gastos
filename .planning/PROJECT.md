@@ -12,7 +12,8 @@ Cargar un gasto desde el celular en segundos y saber al instante cuánta plata m
 
 ### Validated
 
-(None yet — ship to validate)
+- [x] Dirección visual propia (paleta, tipografía, tono) definida con la skill `frontend-design`, evitando un look genérico — Validated in Phase 2: Dirección visual y sistema de diseño
+- [x] Decisiones de diseño documentadas (`DESIGN.md` + `tokens.css` como única fuente) — Validated in Phase 2: Dirección visual y sistema de diseño
 
 ### Active
 
@@ -27,8 +28,6 @@ Cargar un gasto desde el celular en segundos y saber al instante cuánta plata m
 - [ ] Vista por defecto: mes actual, con navegación a meses anteriores (historial)
 - [ ] Editar y borrar gastos e ingresos
 - [ ] PWA instalable, diseño mobile first y responsive (celular, tablet, compu)
-- [ ] Dirección visual propia (paleta, tipografía, tono) definida al inicio con la skill `frontend-design`, evitando un look genérico
-- [ ] Todas las decisiones de diseño documentadas (sistema de diseño) para mantener consistencia en milestones futuros
 
 ### Out of Scope
 
@@ -44,7 +43,7 @@ Cargar un gasto desde el celular en segundos y saber al instante cuánta plata m
 
 - Usuario: desarrollador backend Java que quiere **aprender Python** (sabe lo básico: algoritmos y estructuras de datos; muy poco de POO en Python). Sin experiencia en React/TypeScript.
 - Ritmo elegido: **equilibrio** — avanzar rápido pero explicando las decisiones clave de Python (POO, async, tipado, Pydantic, SQLAlchemy, pytest) con analogías a Java cuando ayuden.
-- La skill `frontend-design` no está instalada en el entorno actual; el usuario la va a instalar antes de la fase de dirección visual.
+- Phase 2 completa (2026-10-31): `DESIGN.md`, tokens, Recursive self-hosted y los componentes base en `/muestra`. La paleta la eligió el usuario (azul marino, verde agua, rojo).
 - Proyecto greenfield, directorio vacío al iniciar.
 
 ## Constraints
@@ -69,7 +68,7 @@ Cargar un gasto desde el celular en segundos y saber al instante cuánta plata m
 | "Lo que queda" = ingresos − gastos del mes | Elección del usuario (ingresos como cargas sueltas) | — Pending |
 | Cuotas: monto dividido en N meses, primera cuota en mes actual o siguiente (elegible) | Elección del usuario; refleja cuándo impacta realmente cada cuota | — Pending |
 | Solo ARS | Elección del usuario; evita conversión de monedas | — Pending |
-| Diseño documentado con skill `frontend-design` | Mantener identidad visual consistente entre milestones | — Pending |
+| Diseño documentado con skill `frontend-design` | Mantener identidad visual consistente entre milestones | ✓ Good — Phase 2; la paleta final la eligió el usuario (#E63946 #F1FAEE #A8DADC #457B9D #1D3557) tras rechazar la cálida |
 
 ## Evolution
 
@@ -89,4 +88,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-10-29 after initialization*
+*Last updated: 2026-10-31 after Phase 2*
