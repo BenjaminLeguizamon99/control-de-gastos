@@ -4,7 +4,7 @@ Documento persistente del sistema de diseño. Los valores viven en `frontend/src
 
 ## Dirección y porqué
 
-**"La libreta del almacén".** La libreta de tapa blanda donde se anota lo que se gastó: papel con un toque durazno, tinta ciruela y números escritos a mano con soltura. Cálida y personal, sin cara de banco ni de template genérico (D-01).
+**"La libreta del almacén".** La libreta de tapa blanda donde se anota lo que se gastó, con números escritos a mano con soltura. Personal, sin cara de banco ni de template genérico (D-01). Desde el 2026-10-31 la paleta es la que eligió el usuario: papel verde agua muy claro y tinta azul marino. Ver "Paleta clara y oscura"; los puntos 1–3 de abajo describen la primera paleta, que se reemplazó.
 
 - **Para quién y para qué:** una sola persona, desde el celular y con una mano. El trabajo principal es anotar un monto en segundos y ver cuánto queda en el mes.
 - **Lo memorable, en un solo lugar:** el monto grande en Recursive con el eje Casual al máximo, que se ve escrito con birome. Todo lo demás es tranquilo: texto en Recursive Linear, sin gradientes, sin sombras salvo en el bottom sheet, sin tarjetas por todos lados.
@@ -23,22 +23,27 @@ Sigue `prefers-color-scheme` del sistema, sin selector en la app (D-05, D-06). C
 
 | Rol | Token | Claro | Oscuro | Contraste claro | Contraste oscuro |
 |-----|-------|-------|--------|-----------------|------------------|
-| Fondo (60%) | `papel` | `#FFF6EF` | `#221A1F` | — | — |
-| Fondo secundario (30%) | `papel-2` | `#F6E9DE` | `#2F242B` | — | — |
-| Divisor decorativo | `linea` | `#EAD9CB` | `#3D3038` | decorativo, sin mínimo | decorativo, sin mínimo |
-| Borde de control | `borde` | `#98818C` | `#8A7681` | 3,36 sobre papel · 3,01 sobre papel-2 | 4,04 · 3,54 |
-| Texto | `tinta` | `#2E1F27` | `#F6EAE2` | 14,67 sobre papel · 13,14 sobre papel-2 | 14,40 · 12,63 |
-| Texto secundario | `tinta-2` | `#6E5A63` | `#C8B4BC` | 5,95 · 5,33 | 8,67 · 7,61 |
-| Acento (10%) | `acento` | `#7A2E63` | `#E8A3CF` | 8,21 sobre papel | 8,56 |
-| Acento hover/pressed | `acento-fuerte` | `#64224F` | `#F2BBDD` | — | — |
-| Texto sobre acento | `sobre-acento` | `#FFFFFF` | `#221A1F` | 8,76 sobre acento | 8,56 |
-| Alerta | `alerta` | `#9A5B00` | `#F2B54A` | 5,08 | 9,29 |
-| Peligro | `peligro` | `#B3261E` | `#FF8A7A` | 6,13 | 7,42 |
-| Velo del sheet | `velo` | tinta al 40% | negro al 60% | — | — |
+| Fondo (60%) | `papel` | `#F1FAEE` | `#14233A` | — | — |
+| Fondo secundario (30%) | `papel-2` | `#E1F1EE` | `#1D3557` | — | — |
+| Divisor decorativo | `linea` | `#C9E4E5` | `#2A4568` | decorativo, sin mínimo | decorativo, sin mínimo |
+| Borde de control | `borde` | `#62879F` | `#6F93B5` | 3,58 sobre papel · 3,28 sobre papel-2 | 4,90 · 3,84 |
+| Texto | `tinta` | `#1D3557` | `#F1FAEE` | 11,56 sobre papel · 10,60 sobre papel-2 | 14,76 · 11,56 |
+| Texto secundario | `tinta-2` | `#3A6A88` | `#A8DADC` | 5,46 · 5,01 | 10,31 · 8,08 |
+| Acento (10%) | `acento` | `#407597` | `#A8DADC` | 4,67 sobre papel | 10,31 |
+| Acento hover/pressed | `acento-fuerte` | `#1D3557` | `#C9E9EA` | — | — |
+| Texto sobre acento | `sobre-acento` | `#FFFFFF` | `#1D3557` | 4,99 sobre acento | 8,08 |
+| Alerta | `alerta` | `#9A5B00` | `#F2B54A` | 5,08 | 8,63 |
+| Peligro | `peligro` | `#C62D3A` | `#FF7A84` | 5,12 · 4,70 sobre papel-2 | 6,29 · 4,93 |
+| Velo del sheet | `velo` | tinta al 40% | azul noche al 60% | — | — |
 
 Mínimos: texto ≥ 4,5:1; bordes de control ≥ 3:1 (WCAG 1.4.11).
 
-**Ajuste:** `borde` claro pasó de `#9C8590` (2,86:1 sobre `papel-2`, no llegaba a 3:1) a `#98818C` (3,01:1). Es el cambio mínimo que pasa.
+**Paleta del usuario (2026-10-31).** La paleta durazno/ciruela original no le gustó al usuario, que eligió `#E63946`, `#F1FAEE`, `#A8DADC`, `#457B9D` y `#1D3557`. Esto reemplaza el tono cálido de D-01: la paleta ahora es fría, pero la fuente, los íconos, los inputs y los botones quedan igual. Algunos tonos se oscurecieron lo mínimo necesario para pasar AA como texto:
+
+- `#457B9D` se usa como `#407597` (4,30 → 4,67 sobre papel).
+- `#E63946` se usa como `#C62D3A` en claro (3,90 → 5,12) y como `#FF7A84` en oscuro.
+
+`alerta` no está en la paleta del usuario. Queda en ámbar porque "te queda poco" tiene que distinguirse de "te pasaste" (D-09).
 
 El acento se reserva para: fondo del botón primario, anillo de foco, relleno de la barra restante en estado normal y links de texto. La selección (segmento, tile de categoría) se marca con tinta, borde y ✓, no con acento.
 
@@ -294,3 +299,4 @@ Revisión hecha el 2026-10-30 con la skill `frontend-design` sobre capturas real
 - **360px:** no hay scroll horizontal ni cortes. Las líneas largas de "Usaste $ … de $ 200.000" pasan a una segunda línea.
 - **Se dejó a propósito:** el texto de "Guardando…" (`Button` con `loading`) en claro tiene poco contraste. El botón está `disabled` mientras carga y WCAG 1.4.3 exime los componentes inactivos. El cambio de texto ya comunica el estado.
 - **Cambios:** ninguno, no hizo falta tocar tokens ni componentes.
+- **Revisión 2 (2026-10-31), paleta del usuario:** el usuario rechazó la paleta durazno/ciruela en la prueba del deploy. Los puntos de "Defaults genéricos" y "Oscuro" que hablan de durazno y ciruela describen esa primera paleta. Se reemplazaron solo los hex de `tokens.css` por la paleta elegida. Se volvió a capturar `/muestra` a 390px en claro y oscuro y `/login` en claro: el contraste pasa AA en todos los pares medidos y no hay cambios de layout. El oscuro ahora es azul noche (`#14233A`), no gris.

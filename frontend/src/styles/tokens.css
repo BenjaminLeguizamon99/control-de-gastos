@@ -3,17 +3,17 @@
 :root {
   color-scheme: light dark;
 
-  --papel: #FFF6EF;
-  --papel-2: #F6E9DE;
-  --linea: #EAD9CB;
-  --borde: #98818C;
-  --tinta: #2E1F27;
-  --tinta-2: #6E5A63;
-  --acento: #7A2E63;
-  --acento-fuerte: #64224F;
+  --papel: #F1FAEE;
+  --papel-2: #E1F1EE;
+  --linea: #C9E4E5;
+  --borde: #62879F;
+  --tinta: #1D3557;
+  --tinta-2: #3A6A88;
+  --acento: #407597;
+  --acento-fuerte: #1D3557;
   --sobre-acento: #FFFFFF;
   --alerta: #9A5B00;
-  --peligro: #B3261E;
+  --peligro: #C62D3A;
 
   --cat-1: #C2412D;
   --cat-2: #B85A06;
@@ -26,8 +26,8 @@
   --cat-9: #C23A6E;
   --cat-10: #8A5A3C;
 
-  --velo: rgb(46 31 39 / 0.4);
-  --sombra-hoja: 0 -8px 24px rgb(46 31 39 / 0.16);
+  --velo: rgb(29 53 87 / 0.4);
+  --sombra-hoja: 0 -8px 24px rgb(29 53 87 / 0.16);
 
   --duracion-corta: 150ms;
   --duracion-hoja: 240ms;
@@ -39,17 +39,17 @@
 /* Sigue el tema del sistema, sin selector en la app (D-05, D-06). */
 @media (prefers-color-scheme: dark) {
   :root {
-    --papel: #221A1F;
-    --papel-2: #2F242B;
-    --linea: #3D3038;
-    --borde: #8A7681;
-    --tinta: #F6EAE2;
-    --tinta-2: #C8B4BC;
-    --acento: #E8A3CF;
-    --acento-fuerte: #F2BBDD;
-    --sobre-acento: #221A1F;
+    --papel: #14233A;
+    --papel-2: #1D3557;
+    --linea: #2A4568;
+    --borde: #6F93B5;
+    --tinta: #F1FAEE;
+    --tinta-2: #A8DADC;
+    --acento: #A8DADC;
+    --acento-fuerte: #C9E9EA;
+    --sobre-acento: #1D3557;
     --alerta: #F2B54A;
-    --peligro: #FF8A7A;
+    --peligro: #FF7A84;
 
     --cat-1: #F08A73;
     --cat-2: #F2A25C;
@@ -62,7 +62,7 @@
     --cat-9: #F28DB2;
     --cat-10: #D6A07E;
 
-    --velo: rgb(0 0 0 / 0.6);
+    --velo: rgb(8 16 28 / 0.6);
     --sombra-hoja: none;
   }
 }
