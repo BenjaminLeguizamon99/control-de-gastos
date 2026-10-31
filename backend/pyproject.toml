@@ -5,6 +5,7 @@ description = "API de Control de Gastos"
 requires-python = ">=3.13"
 dependencies = [
     "alembic>=1.20.1",
+    "emoji>=2.16.0",
     "fastapi[standard]>=0.162.0",
     "psycopg[binary]>=3.3.6",
     "pydantic-settings>=2.16.2",
