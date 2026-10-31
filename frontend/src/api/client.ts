@@ -12,20 +12,30 @@ export class ApiError extends Error {
   }
 }
 
-function request(path: string, token: string | undefined): Promise<Response> {
+interface ApiInit {
+  method?: 'GET' | 'POST' | 'PUT'
+  body?: unknown
+}
+
+function request(path: string, token: string | undefined, init?: ApiInit): Promise<Response> {
+  const headers: Record<string, string> = token ? { Authorization: `Bearer ${token}` } : {}
+  const hasBody = init?.body !== undefined
+  if (hasBody) headers['Content-Type'] = 'application/json'
   return fetch(`${API_URL}${path}`, {
-    headers: token ? { Authorization: `Bearer ${token}` } : {},
+    headers,
+    ...(init?.method && { method: init.method }),
+    ...(hasBody && { body: JSON.stringify(init.body) }),
   })
 }
 
-export async function api<T>(path: string): Promise<T> {
+export async function api<T>(path: string, init?: ApiInit): Promise<T> {
   // getSession en cada llamada: devuelve el token ya refrescado por supabase-js
   const { data } = await supabase.auth.getSession()
-  let res = await request(path, data.session?.access_token)
+  let res = await request(path, data.session?.access_token, init)
   if (res.status === 401) {
     // Token vencido (sleep del equipo, reloj corrido): refrescar y reintentar una vez
     const { data: refreshed } = await supabase.auth.refreshSession()
-    if (refreshed.session) res = await request(path, refreshed.session.access_token)
+    if (refreshed.session) res = await request(path, refreshed.session.access_token, init)
   }
   if (!res.ok) throw new ApiError(res.status)
   return res.json() as Promise<T>
