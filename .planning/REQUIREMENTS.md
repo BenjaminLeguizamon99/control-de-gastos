@@ -114,7 +114,7 @@
 | GAS-01 | Phase 3 | Pending |
 | GAS-02 | Phase 3 | Pending |
 | GAS-03 | Phase 3 | Pending |
-| GAS-04 | Phase 3 | Pending |
+| GAS-04 | Phase 3 (Débito/Efectivo) + Phase 4 (Crédito) | Pending |
 | GAS-05 | Phase 3 | Pending |
 | GAS-06 | Phase 3 | Pending |
 | GAS-07 | Phase 6 | Pending |
