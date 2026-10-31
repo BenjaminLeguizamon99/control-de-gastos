@@ -120,7 +120,26 @@ Plans:
   5. La migración de `categories`, `expenses` e `installments` habilita RLS, y el `curl` con la anon key sigue sin devolver datos.
 
 **Conceptos Python**: clases y POO en Python (`__init__`, `self`, dataclasses), modelos de SQLAlchemy 2.0 con `Mapped[...]` (análogo a entidades JPA), `select()` y `Session` (análogo a `EntityManager`), modelos de Pydantic para validar requests (análogo a DTOs + Bean Validation), capas router → service → repository, `Enum` y `Literal`.
-**Plans**: TBD
+**Plans**: 6 plans
+
+Plans:
+**Wave 1**
+
+- [ ] 03-01-PLAN.md — API del gasto: migración 0002 (3 tablas + RLS), siembra lazy de categorías base, POST /expenses con 1 cuota, último medio, CORS
+- [ ] 03-02-PLAN.md — api() con POST/PUT, tipos de la API, hoyART/ayer y helpers de categorías (TDD)
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [ ] 03-03-PLAN.md — FAB "+", /gasto/nuevo con validación, guardado idempotente y toast
+- [ ] 03-04-PLAN.md — POST/PUT /categories con 409 por la DB y emoji validado (checkpoint uv add emoji) + docs fase-03
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
+- [ ] 03-05-PLAN.md — Sheet de categoría, /categorias, tile "＋ Nueva" y link en el home
+
+**Wave 4** *(blocked on Wave 3 completion)*
+
+- [ ] 03-06-PLAN.md — pg_c_utf8 + migración en Supabase + curl anon, push a main y UAT en celular
 **UI hint**: yes
 
 ### Phase 4: Cuotas de crédito
