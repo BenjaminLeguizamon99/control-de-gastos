@@ -17,22 +17,22 @@
 
 ### Categorías (CAT)
 
-- [ ] **CAT-01**: Al primer uso el usuario tiene categorías base precargadas (incluida "Otros")
-- [ ] **CAT-02**: El usuario puede crear una categoría
-- [ ] **CAT-03**: El usuario puede renombrar una categoría
+- [x] **CAT-01**: Al primer uso el usuario tiene categorías base precargadas (incluida "Otros")
+- [x] **CAT-02**: El usuario puede crear una categoría
+- [x] **CAT-03**: El usuario puede renombrar una categoría
 - [ ] **CAT-04**: El usuario puede borrar una categoría; sus gastos se reasignan a "Otros" (que no se puede borrar)
 
 ### Gastos (GAS)
 
-- [ ] **GAS-01**: El usuario puede cargar un gasto con monto en ARS (acepta decimales con coma, formato "1.234,56"), categoría, descripción opcional, medio de pago y fecha
-- [ ] **GAS-02**: El monto se ingresa primero, con teclado numérico en el celular
-- [ ] **GAS-03**: La categoría se elige tocando una grilla de categorías
-- [ ] **GAS-04**: El medio de pago se elige con un control segmentado de 3 opciones (Débito/Transferencia · Crédito · Efectivo), con el último usado preseleccionado
-- [ ] **GAS-05**: La fecha es hoy por defecto (hora local Argentina), con atajos "Hoy" / "Ayer" y selector para otra fecha
-- [ ] **GAS-06**: Al guardar, el formulario queda abierto y vacío para cargar otro gasto, con una confirmación visual clara de que la carga fue exitosa
+- [x] **GAS-01**: El usuario puede cargar un gasto con monto en ARS (acepta decimales con coma, formato "1.234,56"), categoría, descripción opcional, medio de pago y fecha
+- [x] **GAS-02**: El monto se ingresa primero, con teclado numérico en el celular
+- [x] **GAS-03**: La categoría se elige tocando una grilla de categorías
+- [ ] **GAS-04**: El medio de pago se elige con un control segmentado de 3 opciones (Débito/Transferencia · Crédito · Efectivo), con el último usado preseleccionado *(parcial: Débito/Efectivo en Phase 3; Crédito en Phase 4)*
+- [x] **GAS-05**: La fecha es hoy por defecto (hora local Argentina), con atajos "Hoy" / "Ayer" y selector para otra fecha
+- [x] **GAS-06**: Al guardar, el formulario queda abierto y vacío para cargar otro gasto, con una confirmación visual clara de que la carga fue exitosa
 - [ ] **GAS-07**: El usuario puede editar un gasto (en compras en cuotas, se edita la compra completa y se regeneran sus cuotas)
 - [ ] **GAS-08**: El usuario puede borrar un gasto (en compras en cuotas, se borra la compra completa)
-- [ ] **GAS-09**: Los montos se guardan como centavos enteros; nunca hay errores de redondeo
+- [x] **GAS-09**: Los montos se guardan como centavos enteros; nunca hay errores de redondeo
 
 ### Cuotas (CUO)
 
@@ -107,19 +107,19 @@
 | AUTH-05 | Phase 1 | Complete |
 | AUTH-06 | Phase 1 | Complete |
 | AUTH-07 | Phase 1 | Complete |
-| CAT-01 | Phase 3 | Pending |
-| CAT-02 | Phase 3 | Pending |
-| CAT-03 | Phase 3 | Pending |
+| CAT-01 | Phase 3 | Complete |
+| CAT-02 | Phase 3 | Complete |
+| CAT-03 | Phase 3 | Complete |
 | CAT-04 | Phase 6 | Pending |
-| GAS-01 | Phase 3 | Pending |
-| GAS-02 | Phase 3 | Pending |
-| GAS-03 | Phase 3 | Pending |
-| GAS-04 | Phase 3 (Débito/Efectivo) + Phase 4 (Crédito) | Pending |
-| GAS-05 | Phase 3 | Pending |
-| GAS-06 | Phase 3 | Pending |
+| GAS-01 | Phase 3 | Complete |
+| GAS-02 | Phase 3 | Complete |
+| GAS-03 | Phase 3 | Complete |
+| GAS-04 | Phase 3 (Débito/Efectivo) + Phase 4 (Crédito) | Partial |
+| GAS-05 | Phase 3 | Complete |
+| GAS-06 | Phase 3 | Complete |
 | GAS-07 | Phase 6 | Pending |
 | GAS-08 | Phase 6 | Pending |
-| GAS-09 | Phase 3 | Pending |
+| GAS-09 | Phase 3 | Complete |
 | CUO-01 | Phase 4 | Pending |
 | CUO-02 | Phase 4 | Pending |
 | CUO-03 | Phase 4 | Pending |
