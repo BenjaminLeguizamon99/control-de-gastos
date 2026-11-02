@@ -9,6 +9,7 @@ from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
 from app.models.expense import Expense, Installment
+from app.repositories import expense_repo
 from tests.conftest import USER_A, USER_B, auth, make_token
 
 
@@ -137,6 +138,35 @@ def test_expense_retry_with_changes_conflicts(
     r = post_expense(client, USER_A, {**body, **overrides})
     assert r.status_code == 409
     assert db_session.scalar(select(Expense.amount_cents)) == 123456
+    assert count(db_session, Expense) == 1
+
+
+def test_expense_id_of_other_user_conflicts(client: TestClient, db_session: Session) -> None:
+    body = expense_body(first_category(client, USER_A))
+    assert post_expense(client, USER_A, body).status_code == 201
+    r = post_expense(client, USER_B, {**body, "category_id": first_category(client, USER_B)})
+    assert r.status_code == 409
+    assert count(db_session, Expense) == 1
+
+
+def test_expense_concurrent_retry(
+    client: TestClient, db_session: Session, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    # Simula la carrera: el otro request inserto despues de que este hizo el SELECT.
+    body = expense_body(first_category(client, USER_A))
+    assert post_expense(client, USER_A, body).status_code == 201
+    real_get = expense_repo.get
+    calls: list[None] = []
+
+    def stale_first_get(*args: Any) -> Expense | None:
+        calls.append(None)
+        return None if len(calls) == 1 else real_get(*args)
+
+    monkeypatch.setattr(expense_repo, "get", stale_first_get)
+    r = post_expense(client, USER_A, body)
+    assert r.status_code == 201
+    assert r.json()["id"] == body["id"]
+    assert len(calls) == 2
     assert count(db_session, Expense) == 1
 
 

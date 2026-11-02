@@ -1,6 +1,8 @@
 from uuid import UUID
 
 from fastapi import HTTPException
+from psycopg.errors import UniqueViolation
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from app.models.expense import Expense, Installment
@@ -34,8 +36,19 @@ def create_expense(session: Session, user_id: UUID, data: ExpenseCreate) -> Expe
             )
         ],
     )
-    session.add(expense)
-    session.flush()
+    try:
+        # Savepoint: si otro request con el mismo id gano la carrera, se descarta solo este insert.
+        with session.begin_nested():
+            session.add(expense)
+    except IntegrityError as e:
+        if not (
+            isinstance(e.orig, UniqueViolation) and e.orig.diag.constraint_name == "expenses_pkey"
+        ):
+            raise
+        existing = expense_repo.get(session, user_id, data.id)
+        if existing is None:  # el id es de otro usuario
+            raise HTTPException(409, "Conflicting id") from None
+        return _same_or_409(existing, data)
     return expense
 
 
