@@ -39,5 +39,7 @@ export const CATEGORIA_DUPLICADA = 'Ya tenés una categoría con ese nombre.'
 export const NOMBRE_FALTA = 'Ponele un nombre a la categoría.'
 export const EMOJI_FALTA = 'Elegí un emoji.'
 export const EMOJI_INVALIDO = 'Tiene que ser un solo emoji.'
+export const CATEGORIA_INVALIDA =
+  'No pudimos guardar la categoría porque algún dato no es válido. Revisá el formulario.'
 export const CATEGORIA_RED =
   'No pudimos guardar la categoría. Revisá tu conexión y volvé a tocar "Guardar categoría".'

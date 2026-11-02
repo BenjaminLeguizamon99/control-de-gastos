@@ -6,9 +6,17 @@ if (!API_URL) throw new Error('Falta VITE_API_URL (ver frontend/.env.example)')
 
 export class ApiError extends Error {
   status: number
-  constructor(status: number) {
+  body: unknown
+  constructor(status: number, body?: unknown) {
     super(`HTTP ${status}`)
     this.status = status
+    this.body = body
+  }
+
+  // 422 de FastAPI: detail[0].loc = ["body", "<campo>"]
+  campoInvalido(): unknown {
+    const detail = (this.body as { detail?: unknown } | undefined)?.detail
+    return Array.isArray(detail) ? (detail[0] as { loc?: unknown[] } | undefined)?.loc?.[1] : undefined
   }
 }
 
@@ -37,6 +45,6 @@ export async function api<T>(path: string, init?: ApiInit): Promise<T> {
     const { data: refreshed } = await supabase.auth.refreshSession()
     if (refreshed.session) res = await request(path, refreshed.session.access_token, init)
   }
-  if (!res.ok) throw new ApiError(res.status)
+  if (!res.ok) throw new ApiError(res.status, await res.json().catch(() => undefined))
   return res.json() as Promise<T>
 }

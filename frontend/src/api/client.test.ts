@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import type { ApiError } from './client'
 
 const auth = vi.hoisted(() => ({
   getSession: vi.fn(),
@@ -65,6 +66,25 @@ describe('api', () => {
 
     await expect(api('/me')).rejects.toMatchObject({ status: 401 })
     expect(fetchMock).toHaveBeenCalledTimes(2)
+  })
+
+  it('exposes the field of a 422 validation error', async () => {
+    fetchMock.mockResolvedValueOnce(
+      Response.json({ detail: [{ loc: ['body', 'emoji'], msg: 'x' }] }, { status: 422 }),
+    )
+    const { api } = await import('./client')
+
+    const err = await api('/categories', { method: 'POST', body: {} }).catch((e: unknown) => e)
+    expect(err).toMatchObject({ status: 422 })
+    expect((err as ApiError).campoInvalido()).toBe('emoji')
+  })
+
+  it('has no invalid field when the error body is not a validation error', async () => {
+    fetchMock.mockResolvedValueOnce(Response.json({ detail: 'Not found' }, { status: 404 }))
+    const { api } = await import('./client')
+
+    const err = await api('/x').catch((e: unknown) => e)
+    expect((err as ApiError).campoInvalido()).toBeUndefined()
   })
 
   it('strips a trailing slash from VITE_API_URL', async () => {

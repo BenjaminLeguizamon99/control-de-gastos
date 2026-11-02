@@ -7,6 +7,7 @@ import { Button } from '../../components/ui/Button'
 import { NOMBRES_COLOR, SOLIDO, type Categoria, type ColorCategoria } from '../../components/ui/CategoryGrid'
 import {
   CATEGORIA_DUPLICADA,
+  CATEGORIA_INVALIDA,
   CATEGORIA_RED,
   EMOJI_FALTA,
   EMOJI_INVALIDO,
@@ -51,7 +52,7 @@ export function CategoriaSheet({
   const [libre, setLibre] = useState(EMOJIS.includes(actual) ? '' : actual)
   const [color, setColor] = useState<ColorCategoria>(editando?.color ?? colorMenosUsado(categorias))
   const [errores, setErrores] = useState<{ nombre?: string; emoji?: string }>({})
-  const [errorRed, setErrorRed] = useState(false)
+  const [errorGuardar, setErrorGuardar] = useState<string | null>(null)
 
   // Con algo escrito en el campo libre, manda el campo libre (D-12)
   const libreLimpio = libre.trim()
@@ -75,7 +76,7 @@ export function CategoriaSheet({
     if (nuevos.emoji === EMOJI_INVALIDO) return libreRef.current?.focus()
     if (nuevos.emoji) return emojisRef.current?.querySelector<HTMLInputElement>('input')?.focus()
 
-    setErrorRed(false)
+    setErrorGuardar(null)
     mutation.mutate(
       { name: nombre.trim(), emoji, color },
       {
@@ -91,10 +92,12 @@ export function CategoriaSheet({
           if (err instanceof ApiError && err.status === 409) {
             setErrores({ nombre: CATEGORIA_DUPLICADA })
             nombreRef.current?.focus()
-          } else if (err instanceof ApiError && err.status === 422) {
+          } else if (err instanceof ApiError && err.status === 422 && err.campoInvalido() === 'emoji') {
             setErrores({ emoji: EMOJI_INVALIDO })
+          } else if (err instanceof ApiError && err.status === 422) {
+            setErrorGuardar(CATEGORIA_INVALIDA)
           } else {
-            setErrorRed(true)
+            setErrorGuardar(CATEGORIA_RED)
           }
         },
       },
@@ -210,9 +213,9 @@ export function CategoriaSheet({
         </fieldset>
 
         <div className="mt-2">
-          {errorRed && (
+          {errorGuardar && (
             <p role="alert" className="mb-4 text-etiqueta font-normal text-peligro">
-              {CATEGORIA_RED}
+              {errorGuardar}
             </p>
           )}
           <Button variant="primario" type="submit" fullWidth loading={mutation.isPending} loadingLabel="Guardando…">
