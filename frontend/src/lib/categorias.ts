@@ -24,9 +24,9 @@ export function colorMenosUsado(cs: Categoria[]): ColorCategoria {
 
 const GRAFEMAS = new Intl.Segmenter('es', { granularity: 'grapheme' })
 
-// Solo UX; el backend decide (D-12)
+// Solo UX; el backend decide (D-12). Banderas y keycaps (1️⃣) no son Extended_Pictographic
 export const esUnEmoji = (s: string) =>
-  [...GRAFEMAS.segment(s)].length === 1 && /\p{Extended_Pictographic}/u.test(s)
+  [...GRAFEMAS.segment(s)].length === 1 && /\p{Extended_Pictographic}|\p{Regional_Indicator}|\u20E3/u.test(s)
 
 export const EMOJIS = [
   '🍔', '🍕', '☕', '🛒', '🍺', '🚌', '🚕', '⛽', '🚗', '🏠',
