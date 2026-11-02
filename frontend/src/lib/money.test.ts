@@ -1,7 +1,11 @@
 import { describe, expect, it } from 'vitest'
 import {
+  MONTO_DECIMALES,
+  MONTO_MAXIMO,
+  MONTO_VACIO,
   aCentavos,
   deCentavos,
+  errorMonto,
   estadoRestante,
   formatMonto,
   formatMontoEditable,
@@ -91,6 +95,20 @@ describe('aCentavos / deCentavos', () => {
     [-1500000n, '-15000'],
   ])('deCentavos(%s)', (c, expected) => {
     expect(deCentavos(c)).toBe(expected)
+  })
+})
+
+describe('errorMonto', () => {
+  it.each([
+    ['', MONTO_VACIO],
+    ['0', MONTO_VACIO],
+    ['1.234', MONTO_DECIMALES],
+    ['1000000000', undefined],
+    ['1000000000.01', MONTO_MAXIMO],
+    ['99999999999999999', MONTO_MAXIMO],
+    ['1234.56', undefined],
+  ])('errorMonto(%s)', (monto, expected) => {
+    expect(errorMonto(monto)).toBe(expected)
   })
 })
 

@@ -10,7 +10,7 @@ import { Monto } from '../../components/ui/Monto'
 import { SegmentedControl } from '../../components/ui/SegmentedControl'
 import { CATEGORIA_FALTA } from '../../lib/categorias'
 import { ayer, hoyART } from '../../lib/fecha'
-import { MONTO_DECIMALES, MONTO_VACIO, aCentavos } from '../../lib/money'
+import { aCentavos, errorMonto } from '../../lib/money'
 import { NETWORK_ERROR } from '../auth/authErrors'
 import { CategoriaSheet } from '../categories/CategoriaSheet'
 import { useCategorias } from '../categories/useCategorias'
@@ -34,6 +34,7 @@ const FRASES = [
 const CATEGORIA_NO_EXISTE = 'Esa categoría ya no existe. Elegí otra.'
 const FECHA_FALTA = 'Elegí una fecha.'
 const GUARDAR_RED = 'No pudimos guardar el gasto. Revisá tu conexión y volvé a tocar "Guardar gasto".'
+const GUARDAR_INVALIDO = 'No pudimos guardar el gasto porque algún dato no es válido. Revisá el formulario.'
 const GUARDAR_CONFLICTO =
   'Este gasto ya se había guardado con los datos anteriores. Si volvés a tocar "Guardar gasto", se guarda como un gasto aparte.'
 
@@ -91,9 +92,7 @@ export function NuevoGastoPage() {
 
   function onSubmit(e: FormEvent) {
     e.preventDefault()
-    const nuevos: typeof errores = {}
-    if (monto === '' || aCentavos(monto) <= 0n) nuevos.monto = MONTO_VACIO
-    else if ((monto.split('.')[1] ?? '').length > 2) nuevos.monto = MONTO_DECIMALES
+    const nuevos: typeof errores = { monto: errorMonto(monto) }
     if (!categoria) nuevos.categoria = CATEGORIA_FALTA
     if (!fecha) nuevos.fecha = FECHA_FALTA
     setErrores(nuevos)
@@ -137,6 +136,9 @@ export function NuevoGastoPage() {
             setErrores((x) => ({ ...x, categoria: CATEGORIA_NO_EXISTE }))
             setCategoria(null)
             queryClient.invalidateQueries({ queryKey: ['categories'] })
+          } else if (err instanceof ApiError && err.status === 422) {
+            // Reintentar no sirve: el mismo body vuelve a fallar
+            setErrorGuardar(GUARDAR_INVALIDO)
           } else if (err instanceof ApiError && err.status === 409) {
             // El primer intento llegó al servidor y después se editó el form: el borrador nuevo necesita otro id
             draftId.current = crypto.randomUUID()

@@ -3,6 +3,10 @@
 export const UMBRAL_CERCA = 20
 export const MONTO_VACIO = 'Ingresá un monto mayor a $ 0.'
 export const MONTO_DECIMALES = 'El monto puede tener hasta 2 decimales.'
+export const MONTO_MAXIMO = 'El monto no puede superar $ 1.000.000.000.'
+
+// Mismo tope que ExpenseCreate en el backend; además mantiene el Number() del POST por debajo de 2^53
+const MAX_CENTAVOS = 100_000_000_000n
 
 const MONTO_VALIDO = /^-?\d+(\.\d{1,2})?$/
 const MONEDA = new Intl.NumberFormat('es-AR', {
@@ -63,6 +67,12 @@ export function aCentavos(value: string): bigint {
   const [entero, fraccion = ''] = (negativo ? value.slice(1) : value).split('.')
   const c = BigInt(entero) * 100n + BigInt(fraccion.padEnd(2, '0'))
   return negativo ? -c : c
+}
+
+export function errorMonto(monto: string): string | undefined {
+  if (monto === '' || aCentavos(monto) <= 0n) return MONTO_VACIO
+  if ((monto.split('.')[1] ?? '').length > 2) return MONTO_DECIMALES
+  if (aCentavos(monto) > MAX_CENTAVOS) return MONTO_MAXIMO
 }
 
 export function deCentavos(c: bigint): string {
