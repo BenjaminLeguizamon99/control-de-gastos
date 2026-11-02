@@ -120,6 +120,26 @@ def test_expense_idempotent(client: TestClient, db_session: Session) -> None:
     assert count(db_session, Installment) == 1
 
 
+@pytest.mark.parametrize(
+    "overrides",
+    [
+        {"amount_cents": 999},
+        {"description": "Cena"},
+        {"payment_method": "cash"},
+        {"date": "2026-10-30"},
+    ],
+)
+def test_expense_retry_with_changes_conflicts(
+    client: TestClient, db_session: Session, overrides: dict[str, Any]
+) -> None:
+    body = expense_body(first_category(client, USER_A))
+    assert post_expense(client, USER_A, body).status_code == 201
+    r = post_expense(client, USER_A, {**body, **overrides})
+    assert r.status_code == 409
+    assert db_session.scalar(select(Expense.amount_cents)) == 123456
+    assert count(db_session, Expense) == 1
+
+
 def last_payment(client: TestClient, user: str) -> Any:
     r = client.get("/expenses/last-payment-method", headers=auth(make_token(user)))
     assert r.status_code == 200

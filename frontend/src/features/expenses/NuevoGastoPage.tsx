@@ -34,6 +34,8 @@ const FRASES = [
 const CATEGORIA_NO_EXISTE = 'Esa categoría ya no existe. Elegí otra.'
 const FECHA_FALTA = 'Elegí una fecha.'
 const GUARDAR_RED = 'No pudimos guardar el gasto. Revisá tu conexión y volvé a tocar "Guardar gasto".'
+const GUARDAR_CONFLICTO =
+  'Este gasto ya se había guardado con los datos anteriores. Si volvés a tocar "Guardar gasto", se guarda como un gasto aparte.'
 
 const inputBase =
   'w-full min-h-12 rounded-control border border-borde bg-papel-2 px-4 text-cuerpo text-tinta placeholder:text-tinta-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-acento'
@@ -63,7 +65,7 @@ export function NuevoGastoPage() {
   const [medioElegido, setMedio] = useState<Medio | null>(null)
   const [fecha, setFecha] = useState(hoyART)
   const [errores, setErrores] = useState<{ monto?: string; categoria?: string; fecha?: string }>({})
-  const [errorGuardar, setErrorGuardar] = useState(false)
+  const [errorGuardar, setErrorGuardar] = useState<string | null>(null)
   const [toast, setToast] = useState<Toast | null>(null)
   const [sheetAbierto, setSheetAbierto] = useState(false)
   const [sheetKey, setSheetKey] = useState(0)
@@ -104,7 +106,7 @@ export function NuevoGastoPage() {
     const cat = categorias.data?.find((c) => c.id === categoria)
     if (!cat) return
     const guardado = monto
-    setErrorGuardar(false)
+    setErrorGuardar(null)
     mutation.mutate(
       {
         id: draftId.current,
@@ -135,8 +137,12 @@ export function NuevoGastoPage() {
             setErrores((x) => ({ ...x, categoria: CATEGORIA_NO_EXISTE }))
             setCategoria(null)
             queryClient.invalidateQueries({ queryKey: ['categories'] })
+          } else if (err instanceof ApiError && err.status === 409) {
+            // El primer intento llegó al servidor y después se editó el form: el borrador nuevo necesita otro id
+            draftId.current = crypto.randomUUID()
+            setErrorGuardar(GUARDAR_CONFLICTO)
           } else {
-            setErrorGuardar(true)
+            setErrorGuardar(GUARDAR_RED)
           }
         },
       },
@@ -275,7 +281,7 @@ export function NuevoGastoPage() {
         <div className="mt-2">
           {errorGuardar && (
             <p role="alert" className="mb-4 text-etiqueta font-normal text-peligro">
-              {GUARDAR_RED}
+              {errorGuardar}
             </p>
           )}
           <Button variant="primario" type="submit" fullWidth loading={mutation.isPending} loadingLabel="Guardando…">

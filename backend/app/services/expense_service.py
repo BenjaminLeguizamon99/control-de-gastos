@@ -11,7 +11,7 @@ from app.schemas.expense import ExpenseCreate
 def create_expense(session: Session, user_id: UUID, data: ExpenseCreate) -> Expense:
     existing = expense_repo.get(session, user_id, data.id)
     if existing is not None:
-        return existing  # reintento del mismo borrador: no duplica
+        return _same_or_409(existing, data)
     if category_repo.get(session, user_id, data.category_id) is None:
         # shortcut: HTTPException desde el service; pasar a excepciones de dominio si aparece
         # un caller no HTTP. 404 y no 403: no revela si la categoria es de otro.
@@ -37,6 +37,28 @@ def create_expense(session: Session, user_id: UUID, data: ExpenseCreate) -> Expe
     session.add(expense)
     session.flush()
     return expense
+
+
+def _same_or_409(existing: Expense, data: ExpenseCreate) -> Expense:
+    # Reintento del mismo borrador: no duplica. Si el cliente cambio los datos (la respuesta
+    # anterior se perdio y el usuario corrigio el form), devolver el viejo pisaria la correccion.
+    saved = (
+        existing.amount_cents,
+        existing.category_id,
+        existing.description,
+        existing.payment_method,
+        existing.date,
+    )
+    sent = (
+        data.amount_cents,
+        data.category_id,
+        data.description or None,
+        data.payment_method,
+        data.date,
+    )
+    if saved != sent:
+        raise HTTPException(409, "Conflicting retry")
+    return existing
 
 
 def last_payment_method(session: Session, user_id: UUID) -> str:
