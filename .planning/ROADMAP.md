@@ -21,7 +21,7 @@ Vamos de un directorio vacío a una PWA instalable donde cargo un gasto desde el
 
 - [x] **Phase 1: Fundación end-to-end** - Esqueleto que funciona de punta a punta: login, `/me` protegido por JWT, DB con RLS, deploy temprano (completed 2026-10-30)
 - [x] **Phase 2: Dirección visual y sistema de diseño** - Identidad visual propia con `frontend-design`, `DESIGN.md`, `tokens.css` y componentes base (completed 2026-10-31)
-- [ ] **Phase 3: Categorías y carga rápida de gastos** - Categorías base editables y un formulario de gasto rápido en el celular (1 cuota)
+- [x] **Phase 3: Categorías y carga rápida de gastos** - Categorías base editables y un formulario de gasto rápido en el celular (1 cuota) (completed 2026-11-02)
 - [ ] **Phase 4: Cuotas de crédito** - Compras en N cuotas con preview y mes de la primera cuota elegible
 - [ ] **Phase 5: Ingresos y resumen mensual** - "Te quedan $X", totales por categoría, gráfico, lista por día y navegación de meses
 - [ ] **Phase 6: Edición, filtros y comparaciones** - Editar y borrar gastos e ingresos, borrar categorías, filtros, cuotas pendientes y comparación con el mes anterior
@@ -139,7 +139,7 @@ Plans:
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
-- [ ] 03-06-PLAN.md — pg_c_utf8 + migración en Supabase + curl anon, push a main y UAT en celular
+- [x] 03-06-PLAN.md — pg_c_utf8 + migración en Supabase + curl anon, push a main y UAT en celular
 **UI hint**: yes
 
 ### Phase 4: Cuotas de crédito
@@ -219,7 +219,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 (el backe
 |-------|----------------|--------|-----------|
 | 1. Fundación end-to-end | 6/6 | Complete   | 2026-10-30 |
 | 2. Dirección visual y sistema de diseño | 4/4 | Complete   | 2026-10-31 |
-| 3. Categorías y carga rápida de gastos | 5/6 | In Progress|  |
+| 3. Categorías y carga rápida de gastos | 6/6 | Complete   | 2026-11-02 |
 | 4. Cuotas de crédito | 0/TBD | Not started | - |
 | 5. Ingresos y resumen mensual | 0/TBD | Not started | - |
 | 6. Edición, filtros y comparaciones | 0/TBD | Not started | - |
