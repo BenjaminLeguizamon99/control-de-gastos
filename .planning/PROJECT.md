@@ -44,6 +44,7 @@ Cargar un gasto desde el celular en segundos y saber al instante cuánta plata m
 - Usuario: desarrollador backend Java que quiere **aprender Python** (sabe lo básico: algoritmos y estructuras de datos; muy poco de POO en Python). Sin experiencia en React/TypeScript.
 - Ritmo elegido: **equilibrio** — avanzar rápido pero explicando las decisiones clave de Python (POO, async, tipado, Pydantic, SQLAlchemy, pytest) con analogías a Java cuando ayuden.
 - Phase 2 completa (2026-10-31): `DESIGN.md`, tokens, Recursive self-hosted y los componentes base en `/muestra`. La paleta la eligió el usuario (azul marino, verde agua, rojo).
+- Phase 3 completa (2026-11-01): carga rápida de gastos en `/gasto/nuevo` (monto en centavos, 1 cuota, Débito/Efectivo; Crédito llega en Phase 4) y categorías base editables (crear y renombrar; borrar en Phase 6). Migración 0002 en Supabase y UAT en celular aprobado. El deploy de Render no se disparó solo con el push: revisar la conexión GitHub → Render.
 - Proyecto greenfield, directorio vacío al iniciar.
 
 ## Constraints
@@ -88,4 +89,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-10-31 after Phase 2*
+*Last updated: 2026-11-01 after Phase 3*
